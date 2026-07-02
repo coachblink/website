@@ -496,3 +496,133 @@ a { color: var(--teal-dark); }
 @media (min-width: 1800px) {
   .wrap { max-width: 1360px; }
 }
+
+/* Page header (blog index, blog posts, legal pages) */
+
+.page-header {
+  background: linear-gradient(180deg, var(--mist) 0%, var(--paper) 100%);
+  padding: 56px 0 40px;
+  text-align: center;
+}
+
+.page-header h1 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 10px; }
+
+.page-header .lede { margin: 0 auto; }
+
+.page-meta {
+  font-size: 13.5px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+/* Blog index */
+
+.blog-list {
+  padding: 56px 0 80px;
+}
+
+.post-list {
+  display: grid;
+  gap: 20px;
+  max-width: 760px;
+  margin: 40px auto 0;
+}
+
+.post-card {
+  display: block;
+  padding: 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none;
+  background: var(--paper);
+  transition: border-color 0.15s ease;
+}
+
+.post-card:hover { border-color: var(--teal); }
+
+.post-card-date {
+  font-size: 12.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--teal);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.post-card h2 {
+  font-size: 21px;
+  margin-bottom: 8px;
+}
+
+.post-card p {
+  margin: 0;
+  font-size: 15px;
+}
+
+/* Article (single blog post, legal pages) */
+
+.article {
+  padding: 8px 0 80px;
+}
+
+.article-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.article-inner h2 {
+  font-size: 24px;
+  margin-top: 1.6em;
+}
+
+.article-inner h3 {
+  font-size: 19px;
+  margin-top: 1.4em;
+}
+
+.article-inner p, .article-inner li {
+  font-size: 16.5px;
+  color: var(--ink-soft);
+}
+
+.article-inner ul, .article-inner ol {
+  padding-left: 22px;
+}
+
+.article-inner li { margin-bottom: 8px; }
+
+.article-inner a { text-decoration: underline; }
+
+.back-link {
+  display: inline-block;
+  margin: 32px 0 8px;
+  font-size: 14.5px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--teal-dark);
+}
+
+.article-callout {
+  background: var(--mist);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 22px;
+  margin: 24px 0;
+}
+
+.article-callout p:last-child { margin-bottom: 0; }
+
+/* Legal-page specific: denser body text, numbered sections read like a policy */
+
+.legal .article-inner h2 { font-size: 20px; }
+
+.legal .article-inner p, .legal .article-inner li {
+  font-size: 15.5px;
+  line-height: 1.65;
+}
+
+@media (max-width: 480px) {
+  .article-inner p, .article-inner li { font-size: 15.5px; }
+  .post-card { padding: 20px; }
+}
