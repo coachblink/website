@@ -17,177 +17,637 @@
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    color-scheme: light dark;
+    --teal-light: #5FAC9D;
+    --teal: #3B8272;
+    --teal-dark: #2F6F5F;
+    --ink: #0F172A;
+    --ink-soft: #3F4B5C;
+    --mist: #F4F8F7;
+    --mist-2: #EAF3F0;
+    --line: #E3ECE9;
+    --muted: #8A93A3;
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --card-shadow: 0 20px 40px -24px rgba(47, 111, 95, 0.35);
+    --footer-bg: #0D1B17;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --teal-light: #6ECBB6;
+      --teal: #55B79E;
+      --teal-dark: #2F6F5F;
+      --ink: #F1F5F4;
+      --ink-soft: #AAB6C2;
+      --mist: #0B1420;
+      --mist-2: #121E2C;
+      --line: #253242;
+      --muted: #93A0AF;
+      --card-bg: rgba(255, 255, 255, 0.045);
+      --card-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.6);
+      --footer-bg: #060D0B;
+    }
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--ink);
+    background: var(--mist);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .brand-word { font-family: 'Poppins', sans-serif; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  img { max-width: 100%; display: block; }
+
+  /* ---------- HERO ---------- */
+  .hero { position: relative; height: 100vh; height: 100svh; overflow: hidden; }
+  .hero-video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 80% center;
+    background: #8FB5AE;
+  }
+  @media (min-width: 768px) { .hero-video { object-position: right center; } }
+  @media (min-width: 1024px) { .hero-video { object-position: center center; } }
+
+  .hero-content {
+    position: absolute; inset: 0; z-index: 10;
+    display: flex; flex-direction: column;
+    padding: 1rem;
+  }
+  @media (min-width: 640px) { .hero-content { padding: 2rem 2.5rem; } }
+  @media (min-width: 1024px) { .hero-content { padding: 2rem 3rem; } }
+
+  .glass {
+    background: rgba(10, 26, 22, 0.22);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+  .glass-deep {
+    background: rgba(10, 26, 22, 0.32);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-nav { display: flex; align-items: center; justify-content: space-between; }
+  .nav-pill {
+    display: flex; align-items: center;
+    border-radius: 1.25rem;
+    padding: 0.625rem 1rem;
+  }
+  @media (min-width: 640px) { .nav-pill { padding: 0.875rem 1.5rem; } }
+  .nav-logo { width: 24px; height: 22px; color: #fff; }
+  @media (min-width: 640px) { .nav-logo { width: 30px; height: 27px; } }
+  .brand-word {
+    color: #fff; font-weight: 500; letter-spacing: 0.02em;
+    font-size: 1rem; margin-left: 0.55rem;
+  }
+  @media (min-width: 640px) { .brand-word { font-size: 1.25rem; } }
+  .nav-links {
+    display: none; align-items: center; gap: 1.75rem;
+    margin-left: 3rem; margin-right: 0.5rem;
+    font-size: 0.875rem; color: rgba(255,255,255,0.85);
+  }
+  @media (min-width: 768px) { .nav-links { display: flex; margin-left: 5rem; } }
+  @media (min-width: 1024px) { .nav-links { margin-left: 8rem; } }
+  .nav-links a:hover { color: #fff; }
+  .menu-btn {
+    background: none; border: none; cursor: pointer; color: #fff;
+    margin-left: 1rem; display: flex; align-items: center; padding: 0.25rem;
+  }
+  @media (min-width: 768px) { .menu-btn { display: none; } }
+  .btn-white {
+    background: #fff; color: #0F172A;
+    font-weight: 500; font-size: 0.875rem;
+    padding: 0.75rem 1.5rem; border-radius: 9999px;
+    border: none; cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn-white:hover { transform: translateY(-1px); box-shadow: 0 8px 24px -8px rgba(15,23,42,0.4); }
+  .nav-cta { display: none; }
+  @media (min-width: 640px) { .nav-cta { display: block; } }
+
+  .mobile-menu {
+    display: none;
+    position: absolute; top: 4.5rem; left: 1rem; right: 1rem;
+    border-radius: 1.25rem; padding: 1.25rem; z-index: 20;
+  }
+  .mobile-menu.open { display: block; }
+  @media (min-width: 640px) { .mobile-menu.open { display: none; } }
+  .mobile-menu a { display: block; color: #fff; padding: 0.6rem 0.25rem; font-size: 0.95rem; }
+  .mobile-menu .btn-white { width: 100%; margin-top: 0.75rem; }
+
+  .hero-spacer { flex: 1; }
+  .hero-main {
+    display: flex; flex-direction: column;
+    padding-bottom: 1rem;
+  }
+  @media (min-width: 640px) {
+    .hero-main {
+      flex: 1; flex-direction: row; align-items: flex-end;
+      padding-bottom: 3rem; margin-top: auto;
+    }
+    .hero-spacer { display: none; }
+  }
+  @media (min-width: 1024px) { .hero-main { padding-bottom: 4rem; } }
+
+  .hero-main, .hero-left { min-width: 0; max-width: 100%; }
+  .hero-left { flex: 1; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    color: rgba(255,255,255,0.92); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 0.45rem 0.9rem; border-radius: 9999px; margin-bottom: 1rem;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #5FAC9D;
+    box-shadow: 0 0 8px #5FAC9D;
+  }
+  .hero h1 {
+    color: #fff; font-weight: 500;
+    font-size: 2rem; line-height: 1.08; letter-spacing: -0.02em;
+    max-width: 700px;
+    text-wrap: balance;
+  }
+  @media (min-width: 640px) { .hero h1 { font-size: 3.25rem; } }
+  @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
+  @media (min-width: 1024px) { .hero h1 { font-size: 4.25rem; } }
+  .hero-lede {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.8rem; line-height: 1.65;
+    max-width: 520px; margin-top: 1rem;
+  }
+  @media (min-width: 640px) { .hero-lede { font-size: 1rem; } }
+  @media (min-width: 768px) { .hero-lede { font-size: 1.05rem; } }
+
+  .hero-form {
+    position: relative; margin-top: 1.5rem;
+    max-width: 420px; border-radius: 9999px;
+  }
+  .hero-form input {
+    width: 100%; min-width: 0; background: transparent; border: none; outline: none;
+    color: #fff; font-size: 0.875rem; font-family: inherit;
+    padding: 0.85rem 8rem 0.85rem 1.25rem;
+  }
+  @media (min-width: 640px) { .hero-form input { padding: 1.05rem 9.5rem 1.05rem 1.5rem; } }
+  .hero-form input::placeholder { color: rgba(255,255,255,0.5); }
+  .hero-form .btn-white {
+    position: absolute; right: 0.375rem; top: 50%; transform: translateY(-50%);
+    font-size: 0.78rem; padding: 0.55rem 0.9rem;
+    white-space: nowrap;
+  }
+  @media (min-width: 640px) { .hero-form .btn-white { font-size: 0.875rem; padding: 0.75rem 1.5rem; } }
+  .hero-form .btn-white:hover { transform: translateY(calc(-50% - 1px)); }
+
+  .pill {
+    color: #fff; font-size: 0.75rem;
+    padding: 0.4rem 0.8rem; border-radius: 9999px; white-space: nowrap;
+  }
+  .pills-mobile { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  @media (min-width: 640px) { .pills-mobile { display: none; } }
+  .pills-desktop { display: none; }
+  @media (min-width: 640px) {
+    .pills-desktop {
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 0.5rem; align-self: flex-end; margin-left: 2rem;
+    }
+    .pills-desktop .pill { font-size: 0.875rem; padding: 0.5rem 1rem; }
+  }
+
+  /* ---------- CALM SECTIONS ---------- */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 1.5rem; }
+  .section { padding: 6rem 0; }
+
+  .kicker {
+    display: block; color: var(--teal);
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 0.9rem;
+  }
+  h2 {
+    font-weight: 500; font-size: 1.9rem; letter-spacing: -0.015em;
+    line-height: 1.2; color: var(--ink); text-wrap: balance;
+  }
+  @media (min-width: 768px) { h2 { font-size: 2.4rem; } }
+
+  .breath {
+    background: linear-gradient(160deg, var(--mist-2) 0%, var(--mist) 60%, var(--mist-2) 100%);
+    text-align: center;
+  }
+  .breath p {
+    font-family: 'Poppins', sans-serif; font-weight: 400;
+    font-size: 1.35rem; line-height: 1.5; color: var(--ink-soft);
+    max-width: 640px; margin: 0 auto; text-wrap: balance;
+  }
+  @media (min-width: 768px) { .breath p { font-size: 1.7rem; } }
+  .breath .accent { color: var(--teal); }
+
+  .features-head { max-width: 560px; margin-bottom: 3.5rem; }
+  .features-head p { color: var(--muted); margin-top: 0.9rem; line-height: 1.65; }
+  .grid {
+    display: grid; gap: 1.25rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 640px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    background: var(--card-bg);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--line);
+    border-radius: 1.25rem;
+    padding: 1.75rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow);
+  }
+  .card h3 { font-weight: 500; font-size: 1.05rem; margin-bottom: 0.6rem; }
+  .card p { color: var(--ink-soft); font-size: 0.9rem; line-height: 1.65; }
+  .card-icon {
+    width: 38px; height: 38px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(95,172,157,0.18), rgba(47,111,95,0.12));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--teal); margin-bottom: 1.1rem;
+  }
+
+  .who { background: linear-gradient(180deg, var(--mist), var(--mist-2)); }
+  .who-inner { display: grid; gap: 3rem; grid-template-columns: 1fr; align-items: start; }
+  @media (min-width: 900px) { .who-inner { grid-template-columns: 5fr 6fr; } }
+  .who-lede { color: var(--ink-soft); margin-top: 1rem; line-height: 1.7; }
+  .who-list { display: flex; flex-direction: column; gap: 0.65rem; }
+  .who-list li {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 9999px;
+    padding: 0.8rem 1.35rem;
+    font-size: 0.9rem; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .who-list li::before {
+    content: ""; flex: none;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--teal-light);
+  }
+
+  .plans {
+    display: grid; gap: 1.5rem; margin-top: 3rem;
+    grid-template-columns: 1fr; max-width: 820px;
+  }
+  @media (min-width: 768px) { .plans { grid-template-columns: 1fr 1fr; } }
+  .plan {
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 1.5rem;
+    padding: 2.25rem 2rem;
+  }
+  .plan-featured {
+    background: linear-gradient(170deg, #123128 0%, #2F6F5F 100%);
+    border-color: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+  .plan h3 { font-weight: 500; font-size: 1.15rem; }
+  .plan-featured h3 { color: #fff; }
+  .plan-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #DFF3EC; font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.05em; text-transform: uppercase;
+    padding: 0.3rem 0.75rem; border-radius: 9999px; margin-bottom: 1rem;
+  }
+  .price { font-family: 'Poppins', sans-serif; font-size: 2.3rem; font-weight: 500; margin-top: 0.9rem; }
+  .price span { font-size: 0.85rem; font-weight: 400; opacity: 0.65; margin-left: 0.4rem; font-family: 'Inter', sans-serif; }
+  .price-alt { font-size: 0.82rem; opacity: 0.75; margin-top: 0.2rem; }
+  .plan ul { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .plan li {
+    font-size: 0.88rem; line-height: 1.5;
+    display: flex; gap: 0.6rem; color: var(--ink-soft);
+  }
+  .plan-featured li { color: rgba(255,255,255,0.85); }
+  .plan li::before { content: "\2713"; color: var(--teal); font-weight: 600; }
+  .plan-featured li::before { color: #8FE3C8; }
+
+  .cta-band { padding: 7rem 0; text-align: center; position: relative; overflow: hidden; }
+  .cta-band::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 90% at 50% 110%, rgba(95,172,157,0.25), transparent 70%),
+      linear-gradient(180deg, var(--mist-2), var(--mist));
+  }
+  .cta-inner { position: relative; }
+  .cta-band p { color: var(--ink-soft); margin-top: 0.9rem; }
+  .cta-logo { margin: 0 auto 1.5rem; display: block; }
+  .btn-teal {
+    display: inline-block; margin-top: 2rem;
+    background: var(--teal); color: #fff;
+    font-weight: 500; font-size: 0.9rem;
+    padding: 0.9rem 2.2rem; border-radius: 9999px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .btn-teal:hover { background: #2F6F5F; transform: translateY(-1px); }
+
+  .site-footer {
+    background: var(--footer-bg);
+    color: rgba(255,255,255,0.65);
+    padding: 3.5rem 0;
+    font-size: 0.82rem; line-height: 1.7;
+  }
+  .footer-inner { display: flex; flex-direction: column; gap: 0.9rem; }
+  .footer-mark { color: rgba(255,255,255,0.85); }
+  .site-footer a { color: rgba(255,255,255,0.75); text-decoration: underline; text-underline-offset: 3px; }
+</style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="wrap header-inner">
-    <a class="brand" href="#top" aria-label="Blink home">
-      <img src="assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
-      <span class="brand-word">Blink</span>
-    </a>
-    <nav class="site-nav" aria-label="Primary">
+<section class="hero" id="top">
+  <video class="hero-video" autoplay loop muted playsinline preload="auto"
+    poster="assets/hero-poster.jpg" src="assets/hero-loop.mp4"></video>
+
+  <div class="hero-content">
+    <nav class="hero-nav" aria-label="Primary">
+      <div class="nav-pill glass">
+        <svg class="nav-logo" viewBox="0 0 200 180" aria-hidden="true">
+          <g fill="currentColor" stroke="currentColor">
+            <g stroke-width="11" stroke-linecap="round">
+              <line x1="8" y1="58" x2="44" y2="68"/>
+              <line x1="4" y1="89" x2="26" y2="90"/>
+              <line x1="8" y1="122" x2="44" y2="112"/>
+            </g>
+            <path d="M78,40 C81,72 84,87 108,90 C84,93 81,108 78,140 C75,108 72,93 48,90 C72,87 75,72 78,40 Z"/>
+            <path fill="none" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+              d="M58,20 L128,20 C166,20 182,36 182,58 C182,76 172,84 152,90 C172,96 182,106 182,124 C182,146 166,162 128,162 L58,162"/>
+          </g>
+        </svg>
+        <span class="brand-word">Blink</span>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#who">Who it's for</a>
+          <a href="blog/index.html">Blog</a>
+        </div>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+          </svg>
+        </button>
+      </div>
+      <button class="btn-white nav-cta" data-focus-waitlist>Get Early Access</button>
+    </nav>
+
+    <div class="mobile-menu glass-deep" id="mobileMenu">
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#who">Who it's for</a>
       <a href="blog/index.html">Blog</a>
-    </nav>
-    <span class="badge badge-nav">Launching Summer 2026</span>
-  </div>
-</header>
+      <button class="btn-white" data-focus-waitlist>Get Early Access</button>
+    </div>
 
-<main id="top">
+    <div class="hero-spacer"></div>
 
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="hero-copy">
-        <span class="badge">Coming to the App Store — Summer 2026</span>
-        <h1>Your AI planning partner.</h1>
-        <p class="lede">
+    <div class="hero-main">
+      <div class="hero-left">
+        <span class="hero-badge glass"><span class="dot"></span>Coming to the App Store — Summer 2026</span>
+        <h1>Finally follow through on the stuff you keep avoiding.</h1>
+        <p class="hero-lede">
           Blink is a coach and assistant for the things that are easy to avoid.
           Talk to it like a person — it turns what you say into concrete tasks,
           a real time on your calendar, and a reminder exactly when you need it.
         </p>
-        <div class="hero-cta">
-          <span class="cta-note">Join the launch list on the App Store this summer.</span>
+        <form class="hero-form glass-deep" id="waitlistForm">
+          <input type="email" id="waitlistEmail" placeholder="Enter your email…" aria-label="Email address" required>
+          <button type="submit" class="btn-white">Join the Waitlist</button>
+        </form>
+        <div class="pills-mobile">
+          <span class="pill glass-deep">Just talk to it</span>
+          <span class="pill glass-deep">Calendar-first</span>
+          <span class="pill glass-deep">Reminders that land</span>
         </div>
       </div>
-      <div class="hero-visual">
-        <p class="hero-example">
-          <span class="hero-example-label">You say</span>
-          <span class="hero-example-quote">“Help me clean the kitchen tomorrow.”</span>
-        </p>
-        <p class="hero-example hero-example-reply">
-          <span class="hero-example-label">Blink does</span>
-          <span class="hero-example-quote">Breaks it into steps, finds a 20‑minute slot tomorrow afternoon, puts it on your calendar, and reminds you when it starts.</span>
-        </p>
+      <div class="pills-desktop">
+        <span class="pill glass-deep">Just talk to it</span>
+        <span class="pill glass-deep">Calendar-first</span>
+        <span class="pill glass-deep">Reminders that land</span>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="strip" aria-label="Who Blink is built for">
-    <div class="wrap strip-inner">
-      <p>For people who find hard, interesting things easy — and easy, mundane things hard.</p>
+<section class="section breath">
+  <div class="wrap">
+    <p>For people who find hard, interesting things <span class="accent">easy</span> — and easy, mundane things <span class="accent">hard</span>.</p>
+  </div>
+</section>
+
+<section id="features" class="section">
+  <div class="wrap">
+    <div class="features-head">
+      <span class="kicker">What Blink actually does</span>
+      <h2>Structure that feels like a conversation, not a system.</h2>
+      <p>No forms, no dashboards, no guilt. Just say it — Blink handles the rest.</p>
     </div>
-  </section>
-
-  <section id="features" class="features">
-    <div class="wrap">
-      <h2>What Blink actually does</h2>
-      <div class="grid">
-
-        <article class="card">
-          <h3>Just talk to it</h3>
-          <p>No forms, no dropdowns, no setup screens. Say what's on your mind and Blink turns it into a task, a plan, or a note — conversation first, structure second.</p>
-        </article>
-
-        <article class="card">
-          <h3>Calendar is where things actually happen</h3>
-          <p>A task without a time is an intention. A task with a time is a plan. Blink schedules real execution blocks on your calendar, not just another line in a list.</p>
-        </article>
-
-        <article class="card">
-          <h3>It remembers you, specifically</h3>
-          <p>Blink keeps notes on what actually works for you: the hours you don't want chores scheduled, whether you respond better to gentle or direct nudges, the tasks you tend to underestimate.</p>
-        </article>
-
-        <article class="card">
-          <h3>No shame, ever</h3>
-          <p>Built around distraction-aware design principles: no blame, no guilt-trip notifications, no overwhelming dashboards, no dozen decisions at once. Supportive and action-oriented, always.</p>
-        </article>
-
-        <article class="card">
-          <h3>Reminders that land at the right moment</h3>
-          <p>Not just a time-based alarm. Blink learns when reminders actually get you moving instead of getting dismissed.</p>
-        </article>
-
-        <article class="card">
-          <h3>Positive reinforcement, built in</h3>
-          <p>Completing tasks earns reward points. Small wins get noticed instead of disappearing into a checklist.</p>
-        </article>
-
-      </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3Z"/><path d="M7 11a5 5 0 0 0 10 0M12 16v4"/>
+          </svg>
+        </div>
+        <h3>Just talk to it</h3>
+        <p>No forms, no dropdowns, no setup screens. Say what's on your mind and Blink turns it into a task, a plan, or a note — conversation first, structure second.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/>
+          </svg>
+        </div>
+        <h3>Calendar is where things actually happen</h3>
+        <p>A task without a time is an intention. A task with a time is a plan. Blink schedules real execution blocks on your calendar, not just another line in a list.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 21a9 9 0 1 1 9-9"/><path d="M12 7v5l3 3"/>
+          </svg>
+        </div>
+        <h3>It remembers you, specifically</h3>
+        <p>Blink keeps notes on what actually works for you: the hours you don't want chores scheduled, whether you respond better to gentle or direct nudges, the tasks you tend to underestimate.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 20c-4-3-7-5.8-7-9a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 21 11c0 3.2-3 6-7 9Z" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>No shame, ever</h3>
+        <p>Built around distraction-aware design principles: no blame, no guilt-trip notifications, no overwhelming dashboards, no dozen decisions at once. Supportive and action-oriented, always.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2.5h-15L6 16Z" stroke-linejoin="round"/><path d="M10 20.5a2 2 0 0 0 4 0"/>
+          </svg>
+        </div>
+        <h3>Reminders that land at the right moment</h3>
+        <p>Not just a time-based alarm. Blink learns when reminders actually get you moving instead of getting dismissed.</p>
+      </article>
+      <article class="card">
+        <div class="card-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+            <path d="M12 3l2.2 5.4L20 9l-4.4 3.9L17 19l-5-3.2L7 19l1.4-6.1L4 9l5.8-.6L12 3Z" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Positive reinforcement, built in</h3>
+        <p>Completing tasks earns reward points. Small wins get noticed instead of disappearing into a checklist.</p>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="who" class="who">
-    <div class="wrap who-inner">
-      <div class="who-copy">
-        <h2>Built for brains that need real structure</h2>
-        <p class="who-lede">Constant notifications and infinite scroll make follow-through harder for almost everyone now. Blink is for adults who:</p>
-      </div>
-      <ul class="who-list">
-        <li>Struggle with mundane daily tasks — laundry, dishes, clutter, follow-through</li>
-        <li>Lose track of time or consistently underestimate how long things take</li>
-        <li>Procrastinate on boring work, even when it matters</li>
-        <li>Feel overwhelmed by clutter or long to-do lists</li>
-        <li>Avoid communication tasks — the email, the call, the reply</li>
-        <li>Want external structure and reminders instead of willpower alone</li>
-        <li>Are comfortable using AI as a coach or assistant</li>
-      </ul>
+<section id="who" class="section who">
+  <div class="wrap who-inner">
+    <div>
+      <span class="kicker">Who it's for</span>
+      <h2>Built for brains that need real structure</h2>
+      <p class="who-lede">Constant notifications and infinite scroll make follow-through harder for almost everyone now. Blink is for adults who:</p>
     </div>
-  </section>
+    <ul class="who-list">
+      <li>Struggle with mundane daily tasks — laundry, dishes, clutter, follow-through</li>
+      <li>Lose track of time or consistently underestimate how long things take</li>
+      <li>Procrastinate on boring work, even when it matters</li>
+      <li>Feel overwhelmed by clutter or long to-do lists</li>
+      <li>Avoid communication tasks — the email, the call, the reply</li>
+      <li>Want external structure and reminders instead of willpower alone</li>
+      <li>Are comfortable using AI as a coach or assistant</li>
+    </ul>
+  </div>
+</section>
 
-  <section id="pricing" class="pricing">
-    <div class="wrap">
-      <h2>Pricing</h2>
-      <p class="pricing-lede">Free is genuinely useful on its own. Pro unlocks the full coach.</p>
-
-      <div class="plans">
-        <article class="plan">
-          <h3>Blink Free</h3>
-          <p class="price">$0<span>forever</span></p>
-          <ul>
-            <li>15 AI coach messages a day</li>
-            <li>Unlimited manual task creation</li>
-            <li>3 AI task breakdowns a day</li>
-            <li>Basic time-based reminders</li>
-            <li>Read-only calendar view</li>
-            <li>7-day rolling memory</li>
-          </ul>
-        </article>
-
-        <article class="plan plan-featured">
-          <p class="plan-tag">7-day free trial</p>
-          <h3>Blink Pro</h3>
-          <p class="price">$11.99<span>/ month</span></p>
-          <p class="price-alt">or $71.99/year — 50% off</p>
-          <ul>
-            <li>Unlimited coach chat + proactive nudges</li>
-            <li>Unlimited AI task breakdown</li>
-            <li>AI auto-scheduling onto your calendar</li>
-            <li>Smart, adaptive reminders</li>
-            <li>Full persistent memory, no reset</li>
-            <li>Reward points and gamification</li>
-          </ul>
-        </article>
-      </div>
+<section id="pricing" class="section">
+  <div class="wrap">
+    <span class="kicker">Pricing</span>
+    <h2>Free is genuinely useful. Pro unlocks the full coach.</h2>
+    <div class="plans">
+      <article class="plan">
+        <h3>Blink Free</h3>
+        <p class="price">$0<span>forever</span></p>
+        <ul>
+          <li>15 AI coach messages a day</li>
+          <li>Unlimited manual task creation</li>
+          <li>3 AI task breakdowns a day</li>
+          <li>Basic time-based reminders</li>
+          <li>Read-only calendar view</li>
+          <li>7-day rolling memory</li>
+        </ul>
+      </article>
+      <article class="plan plan-featured">
+        <p class="plan-tag">7-day free trial</p>
+        <h3>Blink Pro</h3>
+        <p class="price">$9.99<span>/ month</span></p>
+        <p class="price-alt">or $59.99/year — 50% off</p>
+        <ul>
+          <li>Unlimited coach chat + proactive nudges</li>
+          <li>Unlimited AI task breakdown</li>
+          <li>AI auto-scheduling onto your calendar</li>
+          <li>Smart, adaptive reminders</li>
+          <li>Full persistent memory, no reset</li>
+          <li>Reward points and gamification</li>
+        </ul>
+      </article>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="cta-band">
-    <div class="wrap cta-band-inner">
-      <img src="assets/blink-mark.svg" alt="" width="40" height="36">
-      <h2>Blink is launching on the App Store this summer.</h2>
-      <p>Native iOS app. Built for iPhone, built for follow-through.</p>
-    </div>
-  </section>
-
-</main>
+<section class="cta-band">
+  <div class="wrap cta-inner">
+    <svg class="cta-logo" width="44" height="40" viewBox="0 0 200 180" aria-hidden="true">
+      <defs>
+        <linearGradient id="blinkGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5FAC9D"/><stop offset="100%" stop-color="#2F6F5F"/>
+        </linearGradient>
+      </defs>
+      <g stroke="#3B8272" stroke-width="11" stroke-linecap="round">
+        <line x1="8" y1="58" x2="44" y2="68"/><line x1="4" y1="89" x2="26" y2="90"/><line x1="8" y1="122" x2="44" y2="112"/>
+      </g>
+      <path fill="#3B8272" d="M78,40 C81,72 84,87 108,90 C84,93 81,108 78,140 C75,108 72,93 48,90 C72,87 75,72 78,40 Z"/>
+      <path fill="none" stroke="url(#blinkGradient)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+        d="M58,20 L128,20 C166,20 182,36 182,58 C182,76 172,84 152,90 C172,96 182,106 182,124 C182,146 166,162 128,162 L58,162"/>
+    </svg>
+    <h2>Blink is launching on the App Store this summer.</h2>
+    <p>Native iOS app. Built for iPhone, built for follow-through.</p>
+    <a class="btn-teal" href="#top" data-focus-waitlist>Join the Waitlist</a>
+  </div>
+</section>
 
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <img src="assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
-    <p class="disclaimer">
+    <svg class="footer-mark" width="26" height="23" viewBox="0 0 200 180" aria-hidden="true">
+      <g fill="currentColor" stroke="currentColor">
+        <g stroke-width="11" stroke-linecap="round">
+          <line x1="8" y1="58" x2="44" y2="68"/><line x1="4" y1="89" x2="26" y2="90"/><line x1="8" y1="122" x2="44" y2="112"/>
+        </g>
+        <path d="M78,40 C81,72 84,87 108,90 C84,93 81,108 78,140 C75,108 72,93 48,90 C72,87 75,72 78,40 Z"/>
+        <path fill="none" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
+          d="M58,20 L128,20 C166,20 182,36 182,58 C182,76 172,84 152,90 C172,96 182,106 182,124 C182,146 166,162 128,162 L58,162"/>
+      </g>
+    </svg>
+    <p>
       Blink is not a medical device, therapist, or substitute for professional care.
       It is a planning, coaching, and organization assistant.
     </p>
-    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
-    <p class="copyright"><a href="privacy-health-data.html">Consumer health data privacy policy</a></p>
+    <p>&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p><a href="support.html">Support</a> &middot; <a href="privacy-health-data.html">Consumer health data privacy policy</a></p>
   </div>
 </footer>
 
+<script>
+  const btn = document.getElementById('menuBtn');
+  const menu = document.getElementById('mobileMenu');
+  btn.addEventListener('click', () => menu.classList.toggle('open'));
+
+  // Waitlist capture: opens a prefilled email to the early-access inbox.
+  // The address is assembled at runtime so it is not harvestable from source.
+  // Swap for the TestFlight public link once an external build is live.
+  const EAP_EMAIL = ['david+eap', 'coachblink.com'].join('@');
+  const form = document.getElementById('waitlistForm');
+  const emailInput = document.getElementById('waitlistEmail');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const addr = emailInput.value.trim();
+    if (!addr) { emailInput.focus(); return; }
+    const subject = encodeURIComponent('Blink early access request');
+    const body = encodeURIComponent(
+      'Please add me to the Blink early access list.\n\nMy email: ' + addr + '\n'
+    );
+    window.location.href = 'mailto:' + EAP_EMAIL + '?subject=' + subject + '&body=' + body;
+    const submitBtn = form.querySelector('button');
+    submitBtn.textContent = 'Check your mail app';
+    setTimeout(() => { submitBtn.textContent = 'Join the Waitlist'; }, 4000);
+  });
+
+  document.querySelectorAll('[data-focus-waitlist]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      menu.classList.remove('open');
+      document.getElementById('top').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => emailInput.focus({ preventScroll: true }), 600);
+    });
+  });
+</script>
 </body>
 </html>
