@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Support — Blink</title>
+<meta name="description" content="Get help with Blink: contact support, manage your subscription, control your data, and find answers to common questions.">
+<meta property="og:title" content="Support — Blink">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="legal">
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Blink home">
+      <img src="assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#who">Who it's for</a>
+      <a href="blog/index.html">Blog</a>
+    </nav>
+    <a href="index.html" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+  <section class="wrap">
+    <div class="legal-doc">
+      <h1>Support</h1>
+      <p class="page-meta">We're a small team and we read every message.</p>
+
+      <h2>Contact us</h2>
+      <p>The best way to reach us is by email: <a class="email" data-show="addr" href="index.html">contact support</a>. Write to us about anything at all &mdash; a bug, a question, help with your account, or feedback. We aim to reply within two business days.<noscript> Our support address is <strong>david+support&#32;at&#32;coachblink&#32;dot&#32;com</strong>.</noscript></p>
+
+      <h2>Signing in and your account</h2>
+      <p>You can sign in with email and password, with Google, or with Apple. If you can't sign in, use "Forgot password" on the sign-in screen to get a reset email, or <a class="email" href="index.html">email us</a>.</p>
+
+      <h2>Subscriptions, billing, and cancellation</h2>
+      <p>Blink offers a free trial and a simple monthly or annual plan. Subscriptions are billed through your Apple ID, and you can view, change, or cancel yours at any time in <strong>Settings &rarr; your name &rarr; Subscriptions</strong> on your iPhone (or via the App Store). Cancelling stops the next renewal and keeps access until the end of the current period. Refund requests are handled by Apple at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+
+      <h2>Your data and deleting your account</h2>
+      <p>You control what Blink remembers. In the app you can view, edit, or delete your notes and turn memory off entirely, and you can delete your account and its data from <strong>Settings</strong>. For a privacy question or a data request, <a class="email" href="index.html">email us</a>. See our <a href="privacy-health-data.html">Consumer Health Data Privacy Policy</a> for details on how your data is handled.</p>
+
+      <h2>A note on what Blink is</h2>
+      <p>Blink is a planning, coaching, and organization assistant. It is not a medical device, therapist, or substitute for professional care, and it does not diagnose or treat any condition. If you're managing a diagnosis, Blink is meant to work alongside your care, not replace it. If you are in crisis, contact your local emergency services or call or text 988 (in the U.S.) to reach the Suicide and Crisis Lifeline.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to Blink</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+  </div>
+</footer>
+
+<script>
+  // Assemble the support address at runtime so it never appears as
+  // harvestable plaintext in the page source. Links carry no address in
+  // markup; JS sets the mailto (and the visible text where data-show="addr").
+  (function () {
+    var addr = ["david+support", "coachblink.com"].join("@");
+    var links = document.querySelectorAll("a.email");
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute("href", "mailto:" + addr);
+      if (links[i].getAttribute("data-show") === "addr") {
+        links[i].textContent = addr;
+      }
+    }
+  })();
+</script>
+
+</body>
+</html>

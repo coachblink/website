@@ -85,7 +85,7 @@
         <li><strong>Delete your account</strong>, which removes your consumer health data from our active systems and backups, not just the parts you can see in the app.</li>
         <li><strong>Withdraw consent</strong> to any sharing you previously agreed to, going forward.</li>
       </ul>
-      <p>Most of these are available directly in the app's Settings. For anything that isn't self-service yet, or if you have a question about your data, contact us at <a href="mailto:privacy@blink.app">privacy@blink.app</a>.</p>
+      <p>Most of these are available directly in the app's Settings. For anything that isn't self-service yet, or if you have a question about your data, <a class="email" data-show="addr" href="index.html">contact us by email</a>.<noscript> Our address is <strong>david+support&#32;at&#32;coachblink&#32;dot&#32;com</strong>.</noscript></p>
 
       <h2>6. Data security</h2>
       <p>Consumer health data is encrypted in transit and at rest. We never log the raw content of your coaching conversations in production system logs. Access to this data internally is limited to what's needed to run and support the product.</p>
@@ -114,6 +114,21 @@
     <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
   </div>
 </footer>
+
+<script>
+  // Assemble the support address at runtime so it never appears as
+  // harvestable plaintext in the page source.
+  (function () {
+    var addr = ["david+support", "coachblink.com"].join("@");
+    var links = document.querySelectorAll("a.email");
+    for (var i = 0; i < links.length; i++) {
+      links[i].setAttribute("href", "mailto:" + addr);
+      if (links[i].getAttribute("data-show") === "addr") {
+        links[i].textContent = addr;
+      }
+    }
+  })();
+</script>
 
 </body>
 </html>
