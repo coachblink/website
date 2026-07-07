@@ -429,6 +429,7 @@
         </p>
         <form class="hero-form glass-deep" id="waitlistForm">
           <input type="email" id="waitlistEmail" placeholder="Enter your email…" aria-label="Email address" required>
+          <input type="text" id="waitlistWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
           <button type="submit" class="btn-white">Join the Waitlist</button>
         </form>
         <div class="pills-mobile">
@@ -619,25 +620,54 @@
   const menu = document.getElementById('mobileMenu');
   btn.addEventListener('click', () => menu.classList.toggle('open'));
 
-  // Waitlist capture: opens a prefilled email to the early-access inbox.
-  // The address is assembled at runtime so it is not harvestable from source.
-  // Swap for the TestFlight public link once an external build is live.
+  // Waitlist capture: posts to the backend, which emails the early-access
+  // inbox. Falls back to a prefilled mailto if the API is unreachable (the
+  // address is assembled at runtime so it is not harvestable from source).
+  const WAITLIST_API = 'https://api.coachblink.com/v1/waitlist';
   const EAP_EMAIL = ['david+eap', 'coachblink.com'].join('@');
   const form = document.getElementById('waitlistForm');
   const emailInput = document.getElementById('waitlistEmail');
+  const honeypot = document.getElementById('waitlistWebsite');
+  const submitBtn = form.querySelector('button');
 
-  form.addEventListener('submit', (e) => {
+  function resetButton(delayMs) {
+    setTimeout(() => {
+      submitBtn.textContent = 'Join the Waitlist';
+      submitBtn.disabled = false;
+    }, delayMs);
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const addr = emailInput.value.trim();
     if (!addr) { emailInput.focus(); return; }
-    const subject = encodeURIComponent('Blink early access request');
-    const body = encodeURIComponent(
-      'Please add me to the Blink early access list.\n\nMy email: ' + addr + '\n'
-    );
-    window.location.href = 'mailto:' + EAP_EMAIL + '?subject=' + subject + '&body=' + body;
-    const submitBtn = form.querySelector('button');
-    submitBtn.textContent = 'Check your mail app';
-    setTimeout(() => { submitBtn.textContent = 'Join the Waitlist'; }, 4000);
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Joining…';
+    try {
+      const res = await fetch(WAITLIST_API, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: addr, website: honeypot.value }),
+      });
+      if (res.status === 400) {
+        submitBtn.textContent = 'Check that email…';
+        resetButton(3000);
+        return;
+      }
+      if (!res.ok) throw new Error('waitlist api status ' + res.status);
+      submitBtn.textContent = "You're on the list ✓";
+      emailInput.value = '';
+      resetButton(6000);
+    } catch (err) {
+      // API unreachable — degrade to the mailto capture path.
+      const subject = encodeURIComponent('Blink early access request');
+      const body = encodeURIComponent(
+        'Please add me to the Blink early access list.\n\nMy email: ' + addr + '\n'
+      );
+      window.location.href = 'mailto:' + EAP_EMAIL + '?subject=' + subject + '&body=' + body;
+      submitBtn.textContent = 'Check your mail app';
+      resetButton(4000);
+    }
   });
 
   document.querySelectorAll('[data-focus-waitlist]').forEach((el) => {
