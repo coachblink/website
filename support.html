@@ -16,6 +16,23 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  .contact-form { display: flex; flex-direction: column; gap: 0.4rem; max-width: 560px; margin: 1.2rem 0 2rem; }
+  .contact-form label { font-size: 0.85rem; font-weight: 600; color: var(--ink-soft); margin-top: 0.6rem; }
+  .contact-form input, .contact-form textarea {
+    font: inherit; color: var(--ink);
+    background: var(--paper); border: 1px solid var(--line);
+    border-radius: 10px; padding: 0.65rem 0.85rem;
+  }
+  .contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--teal); outline-offset: 1px; border-color: var(--teal); }
+  .contact-form textarea { resize: vertical; }
+  .contact-form .btn-pill { margin-top: 1rem; align-self: flex-start; border: none; cursor: pointer; font: inherit; font-size: 14px; font-weight: 600; border-radius: 999px; padding: 10px 22px; }
+  .contact-form .btn-pill:disabled { opacity: 0.6; cursor: default; }
+  .cf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+  .cf-status { font-size: 0.9rem; min-height: 1.2em; margin: 0.2rem 0 0; }
+  .cf-status.ok { color: var(--teal); font-weight: 600; }
+  .cf-status.err { color: #B4433A; }
+</style>
 </head>
 <body class="legal">
 
@@ -42,7 +59,19 @@
       <p class="page-meta">We're a small team and we read every message.</p>
 
       <h2>Contact us</h2>
-      <p>The best way to reach us is by email: <a class="email" data-show="addr" href="index.html">contact support</a>. Write to us about anything at all &mdash; a bug, a question, help with your account, or feedback. We aim to reply within two business days.<noscript> Our support address is <strong>david+support&#32;at&#32;coachblink&#32;dot&#32;com</strong>.</noscript></p>
+      <p>Write to us about anything at all &mdash; a bug, a question, help with your account, or feedback. We aim to reply within two business days. Prefer email? Reach us at <a class="email" data-show="addr" href="index.html">contact support</a>.<noscript> Our support address is <strong>david+support&#32;at&#32;coachblink&#32;dot&#32;com</strong>.</noscript></p>
+
+      <form id="contactForm" class="contact-form" novalidate>
+        <label for="cfName">Name</label>
+        <input id="cfName" name="name" type="text" maxlength="200" required autocomplete="name">
+        <label for="cfEmail">Email</label>
+        <input id="cfEmail" name="email" type="email" maxlength="254" required autocomplete="email">
+        <label for="cfMessage">Message</label>
+        <textarea id="cfMessage" name="message" rows="6" maxlength="5000" required></textarea>
+        <input id="cfWebsite" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" class="cf-hp">
+        <button type="submit" class="btn-pill" id="cfSubmit">Send message</button>
+        <p id="cfStatus" class="cf-status" role="status" aria-live="polite"></p>
+      </form>
 
       <h2>Signing in and your account</h2>
       <p>You can sign in with email and password, with Google, or with Apple. If you can't sign in, use "Forgot password" on the sign-in screen to get a reset email, or <a class="email" href="index.html">email us</a>.</p>
@@ -85,6 +114,55 @@
         links[i].textContent = addr;
       }
     }
+  })();
+
+  // Contact form: posts to the backend, which emails the support inbox.
+  (function () {
+    var API = "https://api.coachblink.com/v1/contact";
+    var form = document.getElementById("contactForm");
+    var status = document.getElementById("cfStatus");
+    var submit = document.getElementById("cfSubmit");
+    var addr = ["david+support", "coachblink.com"].join("@");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      status.className = "cf-status";
+      status.textContent = "";
+      if (!form.reportValidity()) { return; }
+      submit.disabled = true;
+      submit.textContent = "Sending\u2026";
+      try {
+        var res = await fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: document.getElementById("cfName").value.trim(),
+            email: document.getElementById("cfEmail").value.trim(),
+            message: document.getElementById("cfMessage").value.trim(),
+            website: document.getElementById("cfWebsite").value
+          })
+        });
+        if (res.status === 400) {
+          var body = await res.json().catch(function () { return {}; });
+          status.className = "cf-status err";
+          status.textContent = "Please check the form: " + (body.error || "invalid input") + ".";
+        } else if (res.status === 429) {
+          status.className = "cf-status err";
+          status.textContent = "Too many messages just now \u2014 please email us at " + addr + " instead.";
+        } else if (!res.ok) {
+          throw new Error("status " + res.status);
+        } else {
+          form.reset();
+          status.className = "cf-status ok";
+          status.textContent = "Message sent \u2014 we aim to reply within two business days.";
+        }
+      } catch (err) {
+        status.className = "cf-status err";
+        status.textContent = "Couldn't reach the server \u2014 please email us at " + addr + ".";
+      }
+      submit.disabled = false;
+      submit.textContent = "Send message";
+    });
   })();
 </script>
 
