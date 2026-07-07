@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>A Watch App Should Answer One Question — Blink Blog</title>
+<meta name="description" content="We spent a week getting Blink onto the Apple Watch. The hard part wasn't the build system. It was deciding that a watch app should answer exactly one question.">
+<meta property="og:title" content="A Watch App Should Answer One Question">
+<meta property="og:description" content="You glance at a watch for two seconds. Nobody triages a task list on a screen the size of a postage stamp. So the Blink watch app answers one question: what's next, and when.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">2026-07-06 &middot; 3 min read</p>
+      <h1>A Watch App Should Answer One Question</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>We spent the last week getting Blink onto the Apple Watch, and it took more TestFlight builds than we'd like to admit. One build went out with the watch face widget compiled as the wrong kind of target, which Xcode happily accepts on your desk and App Store Connect rejects an hour later, by email. If you've ever wondered why small teams ship their watch apps late, that hour is a big part of the answer.</p>
+
+      <p>The build system wasn't the interesting problem, though. The interesting problem was deciding what a watch app should even be. You glance at a watch for about two seconds. Nobody triages a task list on a screen the size of a postage stamp, and the watch apps that try mostly end up as tiny, worse copies of their phone apps.</p>
+
+      <p>So the Blink watch app doesn't try to be Blink. It answers one question: what's the next thing, and when. The complication puts your next block on the watch face right next to the time, so "what am I supposed to be doing right now" costs one glance and zero willpower.</p>
+
+      <p>What makes that worth a week of build fights is what the glance replaces. Checking your plan on your phone means opening the phone, and the phone contains everything else. You go in to check one thing and surface twenty minutes later having answered two messages and watched a video about canal locks. The wrist has no feed. It gives you the answer and then lets go of your attention, and letting go is the feature.</p>
+
+      <p>You can also mark a block done from the wrist, which sounds minor and isn't. The small ceremony of checking something off is now available in the same two seconds you'd actually do it, instead of waiting for the next time you brave the phone. The watch app is in TestFlight now. If you're on the beta, tell us what one question your wrist wants answered that we're not answering yet.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
