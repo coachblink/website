@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>We Don't Ask to Notify You on Day One — Blink Blog</title>
+<meta name="description" content="Most apps ask to send you notifications the second you open them, before you've done anything. Here's why Blink waits until you schedule your first task, and why that's the only moment the question makes sense.">
+<meta property="og:title" content="We Don't Ask to Notify You on Day One">
+<meta property="og:description" content="A permission you grant before you understand what it's for is one you'll revoke. So Blink asks to notify you when you schedule your first task, not a second sooner.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">2026-07-07 &middot; 3 min read</p>
+      <h1>We Don't Ask to Notify You on Day One</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>You know the moment. You open a new app for the first time, you haven't tapped a single thing yet, and up comes the box: "Blink Would Like to Send You Notifications." You don't know what it wants to send you, or how often, or whether it's the useful kind or the "we miss you" kind. So you tap Don't Allow, because that's the safe answer to a question you can't yet judge. And now the app has burned its one shot, because iOS shows that box exactly once. There's no asking again nicely later.</p>
+
+      <p>We know this because we did it too. For a stretch, Blink asked for notification permission on cold launch, before onboarding, before you'd even signed in. It was the kind of thing that looks fine on the developer's desk and is quietly wrong for everyone else. We caught it, and then we went and read what Apple actually recommends, and it turns out they're blunt about this: don't ask during onboarding. Their own example of when to ask is a task app that waits until you schedule your first task. Which is, more or less, exactly the app we're building.</p>
+
+      <p>So that's what Blink does now. Onboarding still asks whether you'd like reminders, because that's a fair thing to know your preference on. But answering "yes, that sounds useful" on a screen is not the same as the system permission box, and we stopped conflating the two. The real request waits. The first time you actually put a task on your calendar, the moment a future nudge becomes a concrete thing rather than an abstract maybe, that's when the box appears.</p>
+
+      <p>The difference is that by then the question makes sense. You just scheduled something for Thursday at 2pm. "Can Blink remind you about this?" now has an obvious answer, because there's a real Thursday and a real thing you'd rather not blow past. You're saying yes to a specific job you understand, not to a stranger asking for the keys.</p>
+
+      <p>None of this shows up in a feature list. Nobody downloads an app because it asked for a permission politely. But the small decisions about when you're interrupted and what you're asked to trust are the whole texture of living with a piece of software, and we'd rather get the small ones right than save them for a version that never comes. If Blink is going to ask you for anything, we want it to wait until the ask is honest.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
