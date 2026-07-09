@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Dark Mode Isn't Just Inverted Colors — Blink Blog</title>
+<meta name="description" content="Our first dark mode was technically dark and still looked wrong. Here's why flipping colors isn't the same as designing for dark, and what we changed once we actually did.">
+<meta property="og:title" content="Dark Mode Isn't Just Inverted Colors">
+<meta property="og:description" content="White-ish cards on a near-black background. Text that never quite committed to being light or dark. Here's what our first dark mode got wrong, and how Midnight OLED fixed it.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">By David Ndungu, Founder &middot; 2026-07-05 &middot; 4 min read</p>
+      <h1>Dark Mode Isn't Just Inverted Colors</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>Our first dark mode technically worked. Flip the system switch, and the background went dark, the brand teal adapted, and nothing crashed. It also looked wrong in a way that's hard to describe until you've seen it: cards stayed a washed-out white, body text stayed close to black, and a glass effect that was supposed to look frosted painted pale smears across a dark background instead. It was dark mode in the sense that the lights were off. It wasn't dark mode in the sense that anyone had actually designed for the dark.</p>
+
+      <p>The reason is almost boring. Most of our color tokens were hardcoded to light-mode hex values. When the system said "dark," only a couple of them knew what to do with that. Everything else just kept rendering its light-mode self on a black canvas, which is the visual equivalent of wearing sunglasses indoors and calling it an outfit change.</p>
+
+      <h2>Designing dark first, then encoding it</h2>
+
+      <p>So we stopped patching the symptom and did the part we'd skipped: we actually designed three dark treatments (Forest Night, Graphite, and one we ended up calling Midnight OLED) as real mockups, side by side with the approved light designs, before writing a line of code. Midnight OLED won. It's a near-black ground, the same aurora background effect from the light theme but dimmed down until it reads as embers instead of a gradient, frosted glass cards at a faint 6% white opacity, warm off-white text, and a bright mint accent color reserved for the moments that need to pop.</p>
+
+      <p>Once that was settled, encoding it was mechanical: every color in the design system now carries a light value and a dark value as a pair, in one file, so all twenty-five or so screens that consume those tokens picked up the correct dark styling automatically instead of needing individual fixes. The background effect and the glass-card fallback both became scheme-aware the same way. It's the kind of change that looks small in a diff and would have been a much bigger mess if we'd tried to bolt it on screen by screen instead of fixing it at the token level.</p>
+
+      <h2>Then we checked our own work</h2>
+
+      <p>Design reviews are easy to fake if you only look at the screens you already know are fine. So we rendered the approved reference mockups, captured all seventeen app screens in both light and dark automatically, and diffed every one of them against its reference, element by element. Two rounds of fixes came out of that: header spacing on the home screen, a paywall redesign around a single clear call to action, a cleaned-up rewards screen, among others.</p>
+
+      <p>Some gaps didn't get fixed, and we're not hiding that list either. The calendar's day view is still a simple list where the approved design shows an hourly timeline. Task rows are missing the points chips and progress indicators from the mockups, because that needs data model work we haven't done yet. Settings is missing its profile card. We wrote all of it down as a known, remaining list rather than letting "pixel perfect" quietly mean "perfect except for the parts we didn't check."</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

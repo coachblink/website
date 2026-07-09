@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Blink Stopped Guessing When to Notify You — Blink Blog</title>
+<meta name="description" content="A reminder that arrives at the wrong hour gets ignored, then snoozed, then muted entirely. Here's how Blink learned to stop guessing and started tracking what actually gets a response.">
+<meta property="og:title" content="Blink Stopped Guessing When to Notify You">
+<meta property="og:description" content="Every notification either gets acted on, ignored, or snoozed. We started keeping score, and Blink now leans toward the hour that actually works for you.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">By David Ndungu, Founder &middot; 2026-07-04 &middot; 4 min read</p>
+      <h1>Blink Stopped Guessing When to Notify You</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>Every reminder you've ever gotten from an app falls into one of three buckets. You acted on it. You ignored it. Or you tapped snooze and dealt with your past self's poor timing later. Most apps never look at which bucket a notification landed in. They just fire on a fixed schedule and move on, treating every hour as equally good for interrupting you, which it obviously isn't.</p>
+
+      <p>We wanted Blink to actually notice the difference, so we built a small scoring system behind the scenes. Every delivered notification now records what happened to it: the local hour it went out, and whether you acted on it, ignored it, or snoozed it. Over a rolling 30-day window, each hour of your day gets a running score, up a point for every acted-on delivery, down a point for every ignored or snoozed one. Whichever hour comes out ahead becomes your learned hour, the time we now believe you're actually likely to do something about a nudge instead of swiping it away.</p>
+
+      <p>We were deliberate about not trusting thin data. The system won't write a learned hour at all unless it has at least five scored deliveries to work from, and unless one hour has a genuinely positive score once the ignores and snoozes are subtracted out. Two good responses on a slow week don't get to define your whole schedule. Below that bar, Blink just falls back to sending things when it normally would, which is the honest thing to do when you don't actually know something yet.</p>
+
+      <h2>A nudge, not a rule</h2>
+
+      <p>The learned hour doesn't override anything. It's used to re-rank candidate times, for reminders and (as of a few days later) for reschedule suggestions too, always toward the hour you're more likely to act on something, never by throwing out a time slot that's otherwise free. An earlier, equally valid option never disappears because it wasn't your favorite hour. It just moves a little further down the list.</p>
+
+      <p>You can turn the whole thing off. There's a toggle in Settings under Notifications, the same pattern we already use for disabling the coach's memory: an explicit switch, not a buried preference that silently changes behavior. And if you ever want to know why a suggested time looks the way it does, you can just ask the coach. It has a tool that reads the learned hour back directly, so "why did you suggest 6pm" gets a real answer instead of a shrug.</p>
+
+      <p>None of this required a bigger model or a cleverer algorithm. It's a histogram and a threshold. The hard part was deciding when the system had earned the right to have an opinion about your schedule, and building in the discipline to say nothing until it did.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
