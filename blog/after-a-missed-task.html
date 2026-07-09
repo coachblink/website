@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>What Happens After You Miss a Task — Blink Blog</title>
+<meta name="description" content="Most apps handle a missed task by marking it red and leaving the rest to you. Here's what Blink does instead, and where that approach still falls short.">
+<meta property="og:title" content="What Happens After You Miss a Task">
+<meta property="og:description" content="A missed task doesn't have to sit there until you notice it. Here's how Blink finds three real times to try again, and what we got wrong building it.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">By David Ndungu, Founder &middot; 2026-07-09 &middot; 5 min read</p>
+      <h1>What Happens After You Miss a Task</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>You miss a task. Not because you stopped caring about it, but because something else happened first: a call ran long, the kid needed picking up, you fell asleep on the couch at nine instead of doing the thing at nine. That's not really a planning failure. It's just a normal Tuesday.</p>
+
+      <p>Most task apps handle it the same way. The task turns red, gets labeled "missed," and sits there until you notice it, feel bad about it, and go find a new time for it yourself. Nobody does that second part for you. We spent the last couple of weeks building the part where Blink does.</p>
+
+      <h2>What actually happens in the seven days after</h2>
+
+      <p>A background worker checks for task schedules marked "missed" that haven't been offered a new time yet. For each one, it looks seven days ahead and reuses the same slot-finding logic that powers normal scheduling: subtract everything already on your calendar from your working hours, keep only the windows long enough for the task, sort by soonest available.</p>
+
+      <p>Then it does one more pass that's specific to reschedules: it re-ranks those slots, without throwing any away, toward whatever hour you're statistically most likely to actually act on a notification instead of ignoring or snoozing it. That number comes from a separate scorer that's already watching how you respond to reminders. It caps the list at three slots, saves them, and sends a push: "We found new times for [task]. Want to reschedule?"</p>
+
+      <p>This is the part I like most. It doesn't hand you the next technically-free slot at 6am. If you're someone who actually opens Blink around lunch and ignores everything before noon, the three times you see cluster closer to lunch, not closer to sunrise.</p>
+
+      <h2>Why we didn't build a second scheduling engine</h2>
+
+      <p>The honest reason the reschedule search reuses the exact same function as ordinary "when am I free" scheduling is that we didn't want to maintain two of them. A slot that shows up as free everywhere else in Blink is free the same way here, and any fix to how we detect conflicts fixes both paths at once.</p>
+
+      <p>The cost is that the engine doesn't know why you missed something. A doctor's appointment you skipped because you were sick gets treated exactly like a load of laundry you skipped because you didn't feel like it: same worker pass, same three slots, same push notification. It's a scheduling heuristic, not a read on your week. We think that's the right trade for now, but it's a real limitation, not a hidden one.</p>
+
+      <h2>The bug that only showed up with real calendars</h2>
+
+      <p>Shortly after this shipped, TestFlight testers started seeing the Tasks tab crash for some accounts. The cause: a task that had been missed twice picked up two separate pending suggestions, one per calendar event, and the list screen tried to key a dictionary by task ID assuming there'd only ever be one. There wasn't. It's fixed now, but it's the kind of bug that only turns up once real people run real, messy calendars through it, which is most of them.</p>
+
+      <h2>Where you actually see it</h2>
+
+      <p>Missed tasks already live in a section of the Tasks tab called "Avoided or stale." Now, if the worker has found candidate times, that same card shows each one with its own "Reschedule" button, plus a single "Dismiss" if none of them work. One tap, from the exact place the task went stale, no separate flow to hunt down.</p>
+
+      <p>There's also a small reward difference we thought was worth being deliberate about. An ordinary reschedule earns 3 points. Coming back to something that was actually missed earns 5. Crossing back over the harder threshold counts for more, on purpose, not because 5 sounded like a bigger, more exciting number.</p>
+
+      <p>The task doesn't disappear when you miss it, and it doesn't just sit there red, either. It gets smaller: three real times, already checked against your calendar, one tap away, in the same place your Tuesday already lives.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

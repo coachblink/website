@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>When Blink Says It Did Something, It Actually Did It — Blink Blog</title>
+<meta name="description" content="An assistant that says &quot;done&quot; when it isn't is worse than one that says nothing. Here's a bug we found and fixed in how Blink's coach confirms it actually scheduled something.">
+<meta property="og:title" content="When Blink Says It Did Something, It Actually Did It">
+<meta property="og:description" content="A confirmation card was showing up whether scheduling succeeded or failed. Here's the fix, and the two other honesty problems we cleaned up in the same pass.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">By David Ndungu, Founder &middot; 2026-07-08 &middot; 4 min read</p>
+      <h1>When Blink Says It Did Something, It Actually Did It</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>An assistant that occasionally says "done" when it isn't is worse than one that's slower or more cautious. You stop trusting the confirmations, and once you stop trusting the confirmations, you're back to checking everything yourself, which defeats the entire point of asking an assistant to do it in the first place. We found a version of exactly that bug in Blink's coach, and it's worth explaining both the bug and why the fix wasn't just a one-line patch.</p>
+
+      <h2>The bug: a card that couldn't tell success from failure</h2>
+
+      <p>When you confirm a scheduling suggestion in chat, the coach shows a small "on your calendar" card as visual confirmation. The card was appearing whenever you said yes and the app didn't have a new pending confirmation waiting, which sounds like a reasonable signal until you notice that "no new pending confirmation" is also true when the action was declined, or when it flat out failed. The card couldn't distinguish "it worked" from "it didn't," so on a failure, you'd see a calendar confirmation for something that was never actually scheduled.</p>
+
+      <p>The backend already had the information to fix this. It only tags a response as executed when the underlying action genuinely completed, and that signal wasn't being checked on the client at all. Wiring the confirmation card to that real signal, instead of to the absence of a pending state, closed the gap. The same investigation turned up a second, related bug: one of the scheduling screens was reading a shared, stale error message left over from a previous action instead of its own outcome, so success and failure could get crossed between two unrelated things you'd asked it to do back to back. Both are fixed now, and both are the kind of bug you only find by asking "what does this actually check," not "does this generally seem to work."</p>
+
+      <h2>Giving the coach a clock</h2>
+
+      <p>The same pass also restructured the coach's underlying instructions into something closer to an actual protocol instead of a loose set of guidelines. Two pieces of that are worth mentioning. The coach now has the real current date, time, timezone, and your preferred working hours loaded into every conversation, so "remind me tomorrow morning" resolves against your actual tomorrow instead of a guess. And it now knows to redirect requests that have drifted out of scope, like an essay or a code snippet, back toward turning that request into an actual task or plan, since that's what the coach is for.</p>
+
+      <p>None of this is a dramatic feature. It's the unglamorous work of making sure a confirmation means what it says, and that a coach reasoning about "today" actually knows what today is. But that's the part that determines whether you keep double-checking behind it, or whether you eventually stop having to.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

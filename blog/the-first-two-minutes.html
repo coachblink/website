@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>The First Two Minutes We Kept Rebuilding — Blink Blog</title>
+<meta name="description" content="Three different screens, three different design languages, all in the same onboarding flow. Here's what we found when we actually audited it, and what we changed.">
+<meta property="og:title" content="The First Two Minutes We Kept Rebuilding">
+<meta property="og:description" content="Most people decide whether to keep an app before they've used it once. Here's what we found when we audited Blink's first two minutes, and why so much of it needed to change.">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="../assets/favicon-32.png">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="../index.html" aria-label="Blink home">
+      <img src="../assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="index.html">Blog</a>
+    </nav>
+    <a href="../index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">By David Ndungu, Founder &middot; 2026-07-03 &middot; 4 min read</p>
+      <h1>The First Two Minutes We Kept Rebuilding</h1>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>Most people decide whether they're keeping an app in the first two minutes, often before they've asked it to do anything real. That's not a lot of room for a first impression, and it's exactly the part of Blink we hadn't looked at closely enough.</p>
+
+      <p>When we finally audited it screen by screen, the problem wasn't subtle. Splash and onboarding were using one visual language. Home and Chat were using a different one, built earlier and never brought forward. Seven screens, including the entire sign-up and login flow, weren't using either: just raw system defaults. Three different shades of teal showed up across those three worlds, none of them matching. None of it was intentional. It was just what happens when a product grows in pieces and nobody stops to look at the whole thing at once.</p>
+
+      <h2>What we actually changed</h2>
+
+      <p>Login and sign-up used to be two separate screens. We replaced them with one: a segmented pill that switches between "Log in" and "Create your space" with a smooth slide instead of a page transition, labeled fields, a password field with a reveal toggle, and the same rounded card style throughout. New users now land on sign-up first after onboarding, not login, since a login screen is a strange thing to show someone who has never had an account.</p>
+
+      <p>Onboarding itself moved to a different register entirely. The old version was light and form-heavy the whole way through. The new one opens with a dark, cinematic screen: a dimmed background, a centered serif headline, and a single pill button, closer to a film title card than a settings form. The question of how you want your coach to talk to you (gentle, direct, or energetic) used to live buried in a form step. Now it's asked right on that opening video screen, as its own small decision, instead of getting lost among a dozen others.</p>
+
+      <p>This is the part worth being honest about: none of this was guesswork. Before touching the screens, we ran a research pass specifically on subscription-app onboarding, and a few numbers from it are still shaping decisions. The median app converts about 6.2% of downloads into a started trial; the top decile hits over 20%. More strikingly, 55% of people who cancel a 3-day trial do it on day zero, the very first day, which means onboarding has to produce something that actually feels like a result before that first session ends, not just collect a list of preferences and hope. That's also why we stopped asking for notification permission the instant the app opens. Apple's own guidance says not to, and we were doing it anyway; now we ask after you leave onboarding, closer to when a reminder would actually mean something to you.</p>
+
+      <h2>What's still unfinished</h2>
+
+      <p>We're not going to pretend the audit is closed out. Six tabs still exist against four that were actually designed. Home and Chat are still running the older visual language we haven't ported over yet. Settings, Subscription, and Rewards haven't been touched at all. Writing that down here isn't a confession, it's just where the list stands, and it's the same list we're working from internally.</p>
+
+      <p>Two minutes isn't long. We'd rather spend the next round of work making sure the rest of the app earns the impression those two minutes create, instead of quietly hoping nobody notices the gap.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to all posts</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="../assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="../privacy-health-data.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
