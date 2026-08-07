@@ -613,6 +613,48 @@ a { color: var(--teal-dark); }
 
 .article-callout p:last-child { margin-bottom: 0; }
 
+/* Comparison tables (category comparison pages) */
+
+.compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 8px 0 32px;
+  font-size: 15px;
+}
+
+.compare-table th,
+.compare-table td {
+  border: 1px solid var(--line);
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.compare-table th {
+  background: var(--mist);
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+.compare-table td { color: var(--ink-soft); }
+
+.compare-table tr:nth-child(even) td { background: rgba(15, 23, 42, 0.02); }
+
+@media (prefers-color-scheme: dark) {
+  .compare-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.02); }
+}
+
+@media (max-width: 640px) {
+  .compare-table-wrap { overflow-x: auto; margin: 8px -4px 32px; }
+  .compare-table { margin: 0; min-width: 480px; }
+}
+
+.faq-item { margin-bottom: 22px; }
+
+.faq-item h3 { font-size: 17.5px; margin-bottom: 6px; }
+
 /* Legal-page specific: denser body text, numbered sections read like a policy */
 
 .legal .article-inner h2 { font-size: 20px; }
