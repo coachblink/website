@@ -24,14 +24,14 @@ SITE_BASE = "https://coachblink.com"
 SITEMAP_NS = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
 
 # go/ holds JS redirect stubs for outbound share links, not indexable content.
-EXCLUDED_DIRS = {".git", "go", "assets", ".kazi"}
+EXCLUDED_DIRS = {"go", "assets"}
 
 
 def crawlable_html_files(root: pathlib.Path):
     files = []
     for path in sorted(root.rglob("*.html")):
         rel = path.relative_to(root)
-        if rel.parts[0] in EXCLUDED_DIRS:
+        if rel.parts[0] in EXCLUDED_DIRS or rel.parts[0].startswith("."):
             continue
         files.append(path)
     return files
