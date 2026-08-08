@@ -21,7 +21,7 @@ care.
   screens, no phone calls, no dark patterns. Subscriptions are billed and
   managed by Apple, so cancellation also works from iPhone Settings.
 - Free tier: a genuinely usable free plan (daily-capped AI chat and task
-  breakdown, unlimited manual tasks and lists).
+  breakdown, up to 10 active tasks at a time, unlimited manual lists).
 
 ## Pricing
 

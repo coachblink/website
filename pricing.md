@@ -1,12 +1,12 @@
 # Blink pricing
 
-Plain-language pricing facts, kept current. Last updated: 2026-07-03.
+Plain-language pricing facts, kept current. Last updated: 2026-08-08.
 
 ## Plans
 
 | Plan | Price | Notes |
 |---|---|---|
-| Blink Free | $0, forever | Daily-capped AI coach chat and AI task breakdown, unlimited manual tasks, basic reminders |
+| Blink Free | $0, forever | Daily-capped AI coach chat and AI task breakdown, up to 10 active tasks at a time, basic reminders |
 | Blink Pro — Monthly | $9.99/month | Auto-renewing Apple subscription |
 | Blink Pro — Annual | $59.99/year (≈$5.00/month) | 50% off the monthly rate, auto-renewing |
 
@@ -17,8 +17,8 @@ are not charged.
 
 ## What Pro adds
 
-Unlimited coach chat with proactive check-ins, unlimited AI task
-breakdown, AI scheduling onto your calendar, smart adaptive reminders,
+Unlimited coach chat, unlimited AI task breakdown, unlimited active
+tasks, AI scheduling onto your calendar, smart adaptive reminders,
 full persistent memory, and rewards.
 
 ## Cancellation
