@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Blink — Your AI planning partner</title>
-<meta name="description" content="Blink is an AI coach and assistant that helps people plan, schedule, remember, and follow through on daily tasks. Launching on the App Store summer 2026.">
+<meta name="description" content="Blink is an AI coach and assistant that helps people plan, schedule, remember, and follow through on daily tasks. Now available on the App Store.">
 
 <meta property="og:title" content="Blink — Your AI planning partner">
 <meta property="og:description" content="Talk to Blink like a person. It turns what you say into tasks, a real time on your calendar, and a reminder exactly when you need it.">
@@ -194,10 +194,14 @@
   @media (min-width: 640px) { .hero-lede { font-size: 1rem; } }
   @media (min-width: 768px) { .hero-lede { font-size: 1.05rem; } }
 
+  .hero-ctas { margin-top: 1.5rem; }
+  .store-btn { display: inline-block; }
+
   .hero-form {
     position: relative; margin-top: 1.5rem;
     max-width: 420px; border-radius: 9999px;
   }
+  .hero-form-secondary { margin-top: 0.75rem; max-width: 380px; opacity: 0.88; }
   .hero-form input {
     width: 100%; min-width: 0; background: transparent; border: none; outline: none;
     color: #fff; font-size: 0.875rem; font-family: inherit;
@@ -379,6 +383,7 @@
   "@type": "SoftwareApplication",
   "name": "Blink",
   "url": "https://coachblink.com/",
+  "installUrl": "https://apps.apple.com/app/idAPPSTORE_ID_TBD",
   "description": "Blink is an AI coach and assistant that helps people plan, schedule, remember, and follow through on daily tasks. It turns what you say into tasks, a real time on your calendar, and a reminder exactly when you need it.",
   "operatingSystem": "iOS",
   "applicationCategory": "ProductivityApplication",
@@ -447,7 +452,7 @@
           </svg>
         </button>
       </div>
-      <button class="btn-white nav-cta" data-focus-waitlist>Get Early Access</button>
+      <a class="btn-white nav-cta" href="https://apps.apple.com/app/idAPPSTORE_ID_TBD" target="_blank" rel="noopener">Download the App</a>
     </nav>
 
     <div class="mobile-menu glass-deep" id="mobileMenu">
@@ -455,24 +460,27 @@
       <a href="#pricing">Pricing</a>
       <a href="#who">Who it's for</a>
       <a href="blog/index.html">Blog</a>
-      <button class="btn-white" data-focus-waitlist>Get Early Access</button>
+      <a class="btn-white" href="https://apps.apple.com/app/idAPPSTORE_ID_TBD" target="_blank" rel="noopener">Download the App</a>
     </div>
 
     <div class="hero-spacer"></div>
 
     <div class="hero-main">
       <div class="hero-left">
-        <span class="hero-badge glass"><span class="dot"></span>Coming to the App Store — Summer 2026</span>
+        <span class="hero-badge glass"><span class="dot"></span>Now on the App Store</span>
         <h1>Finally follow through on the stuff you keep avoiding.</h1>
         <p class="hero-lede">
           Blink is a coach and assistant for the things that are easy to avoid.
           Talk to it like a person — it turns what you say into concrete tasks,
           a real time on your calendar, and a reminder exactly when you need it.
         </p>
-        <form class="hero-form glass-deep" id="waitlistForm">
-          <input type="email" id="waitlistEmail" placeholder="Enter your email…" aria-label="Email address" required>
+        <div class="hero-ctas">
+          <a class="btn-white store-btn" href="https://apps.apple.com/app/idAPPSTORE_ID_TBD" target="_blank" rel="noopener">Download on the App Store</a>
+        </div>
+        <form class="hero-form glass-deep hero-form-secondary" id="waitlistForm">
+          <input type="email" id="waitlistEmail" placeholder="Get product tips by email…" aria-label="Email address" required>
           <input type="text" id="waitlistWebsite" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-          <button type="submit" class="btn-white">Join the Waitlist</button>
+          <button type="submit" class="btn-white">Get Updates</button>
         </form>
         <div class="pills-mobile">
           <span class="pill glass-deep">Just talk to it</span>
@@ -648,9 +656,9 @@
       <path fill="none" stroke="url(#blinkGradient)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"
         d="M58,20 L128,20 C166,20 182,36 182,58 C182,76 172,84 152,90 C172,96 182,106 182,124 C182,146 166,162 128,162 L58,162"/>
     </svg>
-    <h2>Blink is launching on the App Store this summer.</h2>
+    <h2>Blink is live on the App Store.</h2>
     <p>Native iOS app. Built for iPhone, built for follow-through.</p>
-    <a class="btn-teal" href="#top" data-focus-waitlist>Join the Waitlist</a>
+    <a class="btn-teal" href="https://apps.apple.com/app/idAPPSTORE_ID_TBD" target="_blank" rel="noopener">Download on the App Store</a>
   </div>
 </section>
 
@@ -680,9 +688,10 @@
   const menu = document.getElementById('mobileMenu');
   btn.addEventListener('click', () => menu.classList.toggle('open'));
 
-  // Waitlist capture: posts to the backend, which emails the early-access
-  // inbox. Falls back to a prefilled mailto if the API is unreachable (the
-  // address is assembled at runtime so it is not harvestable from source).
+  // Product-updates capture: posts to the backend, which emails the
+  // early-access inbox. Falls back to a prefilled mailto if the API is
+  // unreachable (the address is assembled at runtime so it is not
+  // harvestable from source).
   const WAITLIST_API = 'https://api.coachblink.com/v1/waitlist';
   const EAP_EMAIL = ['david+eap', 'coachblink.com'].join('@');
   const form = document.getElementById('waitlistForm');
@@ -692,7 +701,7 @@
 
   function resetButton(delayMs) {
     setTimeout(() => {
-      submitBtn.textContent = 'Join the Waitlist';
+      submitBtn.textContent = 'Get Updates';
       submitBtn.disabled = false;
     }, delayMs);
   }
@@ -702,7 +711,7 @@
     const addr = emailInput.value.trim();
     if (!addr) { emailInput.focus(); return; }
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Joining…';
+    submitBtn.textContent = 'Sending…';
     try {
       const res = await fetch(WAITLIST_API, {
         method: 'POST',
@@ -720,23 +729,14 @@
       resetButton(6000);
     } catch (err) {
       // API unreachable — degrade to the mailto capture path.
-      const subject = encodeURIComponent('Blink early access request');
+      const subject = encodeURIComponent('Blink product updates signup');
       const body = encodeURIComponent(
-        'Please add me to the Blink early access list.\n\nMy email: ' + addr + '\n'
+        'Please add me to the Blink product updates list.\n\nMy email: ' + addr + '\n'
       );
       window.location.href = 'mailto:' + EAP_EMAIL + '?subject=' + subject + '&body=' + body;
       submitBtn.textContent = 'Check your mail app';
       resetButton(4000);
     }
-  });
-
-  document.querySelectorAll('[data-focus-waitlist]').forEach((el) => {
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      menu.classList.remove('open');
-      document.getElementById('top').scrollIntoView({ behavior: 'smooth' });
-      setTimeout(() => emailInput.focus({ preventScroll: true }), 600);
-    });
   });
 </script>
 </body>
