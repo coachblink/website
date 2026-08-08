@@ -1,8 +1,8 @@
-# blink-brain/website
+# coachblink/website
 
-Marketing landing page for [Blink](https://github.com/blink-brain/blink), an AI executive function partner for people with ADHD.
+Marketing landing page for [Blink](https://github.com/coachblink/blink), an AI coach and planning assistant for people who avoid the tasks they know matter.
 
-Plain static HTML/CSS, no build step. Served via GitHub Pages at https://blink-brain.github.io/website/.
+Plain static HTML/CSS, no build step. Served via GitHub Pages at https://coachblink.com/.
 
 ## Local preview
 
@@ -33,4 +33,4 @@ python3 scripts/validate.py --self-test
 
 ## Updating brand assets
 
-Source SVGs/PNGs live in `assets/` and are copied from the main [`blink`](https://github.com/blink-brain/blink) repo's `assets/branding/` directory. Keep them in sync if the brand kit changes there.
+Source SVGs/PNGs live in `assets/` and are copied from the main [`blink`](https://github.com/coachblink/blink) repo's `assets/branding/` directory. Keep them in sync if the brand kit changes there.
