@@ -28,6 +28,15 @@ care.
   managed by Apple, so cancellation also works from iPhone Settings.
 - Free tier: a genuinely usable free plan (daily-capped AI chat and task
   breakdown, up to 10 active tasks at a time, unlimited manual lists).
+- Agent-ready: Blink speaks the Model Context Protocol (MCP). Any
+  MCP-supporting AI (Claude via claude.ai custom connectors, Claude
+  Code, Claude Desktop, others) can connect to the remote MCP server at
+  https://api.coachblink.com/mcp with OAuth sign-in. Connected AIs get
+  agent scope only: they can read tasks/calendar/reminders/capacity,
+  propose tasks, and file decisions to the user's Inbox — they can never
+  create, complete, delete, or schedule anything directly; every
+  proposal waits for the user's one-tap accept or decline, enforced
+  server-side.
 
 ## Pricing
 
@@ -38,6 +47,10 @@ care.
 ## Learn more
 
 - [Home](https://coachblink.com/): product overview and App Store link
+- [Connect your AI (MCP)](https://coachblink.com/mcp.html): setup guide
+  for connecting Claude or any MCP client to Blink — connector URL,
+  Claude Code command, access scopes (agent/full/supervisor), the exact
+  agent tool list, and what a connected AI can and cannot do
 - [Blog](https://coachblink.com/blog/): essays on focus, follow-through,
   and why easy things feel impossible
 - [Cancel anytime, actually](https://coachblink.com/blog/cancel-anytime-actually.html):
