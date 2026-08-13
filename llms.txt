@@ -1,9 +1,11 @@
 # Blink
 
-> Blink is an AI planning partner for people who struggle with focus and
-> follow-through — it doesn't just make the task list, it checks in,
-> re-nudges, and re-schedules until the task is actually done. iOS app,
-> built by a solo founder who built it for himself first.
+> Blink is an attention-first AI coach and calendar for people who
+> struggle with focus and follow-through — it manages what needs you.
+> Three tabs: Now shows the one thing to do; the Coach turns anything
+> you type or dictate into tasks and scheduled time; the Inbox holds
+> the decisions that need you, each a one-tap answer. iOS app, built by
+> a solo founder who built it for himself first.
 
 Blink is not a medical device, therapist, or substitute for professional
 care.
@@ -11,9 +13,13 @@ care.
 ## Key facts
 
 - Platform: iPhone (iOS). Distributed on the Apple App Store.
-- What it does: conversational AI coach, AI task breakdown (vague task →
-  concrete steps), calendar-first scheduling, adaptive reminders,
-  persistent memory of your context, and a rewards system.
+- What it does: a three-tab app — Now (the moment view: one thing to
+  do, backed by day, month, and year calendar views), Coach
+  (conversational capture: type or dictate to create tasks, repeating
+  tasks, and scheduled blocks; AI task breakdown from vague task to
+  concrete steps; memory is explicit opt-in), and Inbox (decisions that
+  need you, answered in one tap). Plus adaptive reminders and a rewards
+  system with progress that never resets to zero.
 - What makes it different: follow-through. Most planning apps stop after
   the list exists; Blink keeps checking in on day 30 the same way it did
   on day 1.
@@ -22,6 +28,15 @@ care.
   managed by Apple, so cancellation also works from iPhone Settings.
 - Free tier: a genuinely usable free plan (daily-capped AI chat and task
   breakdown, up to 10 active tasks at a time, unlimited manual lists).
+- Agent-ready: Blink speaks the Model Context Protocol (MCP). Any
+  MCP-supporting AI (Claude via claude.ai custom connectors, Claude
+  Code, Claude Desktop, others) can connect to the remote MCP server at
+  https://api.coachblink.com/mcp with OAuth sign-in. Connected AIs get
+  agent scope only: they can read tasks/calendar/reminders/capacity,
+  propose tasks, and file decisions to the user's Inbox — they can never
+  create, complete, delete, or schedule anything directly; every
+  proposal waits for the user's one-tap accept or decline, enforced
+  server-side.
 
 ## Pricing
 
@@ -32,6 +47,10 @@ care.
 ## Learn more
 
 - [Home](https://coachblink.com/): product overview and App Store link
+- [Connect your AI (MCP)](https://coachblink.com/mcp.html): setup guide
+  for connecting Claude or any MCP client to Blink — connector URL,
+  Claude Code command, access scopes (agent/full/supervisor), the exact
+  agent tool list, and what a connected AI can and cannot do
 - [Blog](https://coachblink.com/blog/): essays on focus, follow-through,
   and why easy things feel impossible
 - [Cancel anytime, actually](https://coachblink.com/blog/cancel-anytime-actually.html):

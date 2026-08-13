@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://coachblink.com/</loc><lastmod>2026-08-08</lastmod></url>
+  <url><loc>https://coachblink.com/</loc><lastmod>2026-08-13</lastmod></url>
+  <url><loc>https://coachblink.com/mcp.html</loc><lastmod>2026-08-13</lastmod></url>
   <url><loc>https://coachblink.com/ai-coach-vs-todo-list.html</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://coachblink.com/ai-coach-vs-body-doubling.html</loc><lastmod>2026-08-07</lastmod></url>
   <url><loc>https://coachblink.com/reminders-vs-check-ins.html</loc><lastmod>2026-08-07</lastmod></url>
@@ -25,6 +26,6 @@
   <url><loc>https://coachblink.com/blog/why-your-list-feels-too-long.html</loc><lastmod>2026-07-09</lastmod></url>
   <url><loc>https://coachblink.com/support.html</loc><lastmod>2026-07-08</lastmod></url>
   <url><loc>https://coachblink.com/privacy.html</loc><lastmod>2026-07-13</lastmod></url>
-  <url><loc>https://coachblink.com/privacy-health-data.html</loc><lastmod>2026-07-08</lastmod></url>
+  <url><loc>https://coachblink.com/consumer-data-policy.html</loc><lastmod>2026-07-08</lastmod></url>
   <url><loc>https://coachblink.com/terms.html</loc><lastmod>2026-07-08</lastmod></url>
 </urlset>
