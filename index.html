@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<title>Blink — Your AI planning partner</title>
-<meta name="description" content="Blink is an AI coach and assistant that helps people plan, schedule, remember, and follow through on daily tasks. Launching on the App Store summer 2026.">
+<title>Blink — The app that manages what needs you</title>
+<meta name="description" content="Blink is an AI coach and calendar in three tabs — Now, Coach, Inbox. Say anything and it becomes tasks and time on your day; the decisions that need you wait in one calm place. Launching on the App Store summer 2026.">
 
-<meta property="og:title" content="Blink — Your AI planning partner">
-<meta property="og:description" content="Talk to Blink like a person. It turns what you say into tasks, a real time on your calendar, and a reminder exactly when you need it.">
+<meta property="og:title" content="Blink — The app that manages what needs you">
+<meta property="og:description" content="Three tabs: Now shows the one thing to do, the Coach turns what you say into tasks and scheduled time, and the Inbox holds the decisions only you can make.">
 <meta property="og:image" content="https://coachblink.com/assets/og-card.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -285,6 +285,29 @@
     color: var(--teal); margin-bottom: 1.1rem;
   }
 
+  .tab-name {
+    display: inline-block; font-family: 'Poppins', sans-serif;
+    font-weight: 500; font-size: 0.8rem; letter-spacing: 0.06em;
+    color: var(--teal); text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .screens {
+    display: grid; gap: 1.25rem; margin-top: 3rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 768px) { .screens { grid-template-columns: repeat(3, 1fr); } }
+  .screens figure { margin: 0; }
+  .screens img {
+    width: 100%; border-radius: 1.25rem;
+    border: 1px solid var(--line);
+    background: var(--mist-2);
+    aspect-ratio: 9 / 19.5; object-fit: cover;
+  }
+  .screens figcaption {
+    color: var(--muted); font-size: 0.8rem; text-align: center;
+    margin-top: 0.6rem;
+  }
+
   .who { background: linear-gradient(180deg, var(--mist), var(--mist-2)); }
   .who-inner { display: grid; gap: 3rem; grid-template-columns: 1fr; align-items: start; }
   @media (min-width: 900px) { .who-inner { grid-template-columns: 5fr 6fr; } }
@@ -379,7 +402,7 @@
   "@type": "SoftwareApplication",
   "name": "Blink",
   "url": "https://coachblink.com/",
-  "description": "Blink is an AI coach and assistant that helps people plan, schedule, remember, and follow through on daily tasks. It turns what you say into tasks, a real time on your calendar, and a reminder exactly when you need it.",
+  "description": "Blink is an AI coach and calendar in three tabs — Now, Coach, and Inbox. It turns what you say into tasks, repeating tasks, and real time on your calendar, and holds the decisions that need you in a one-tap Inbox.",
   "operatingSystem": "iOS",
   "applicationCategory": "ProductivityApplication",
   "offers": [
@@ -463,11 +486,13 @@
     <div class="hero-main">
       <div class="hero-left">
         <span class="hero-badge glass"><span class="dot"></span>Coming to the App Store — Summer 2026</span>
-        <h1>Finally follow through on the stuff you keep avoiding.</h1>
+        <h1>Blink manages what needs you.</h1>
         <p class="hero-lede">
-          Blink is a coach and assistant for the things that are easy to avoid.
-          Talk to it like a person — it turns what you say into concrete tasks,
-          a real time on your calendar, and a reminder exactly when you need it.
+          A coach and a calendar for the stuff you keep avoiding. Talk to it
+          like a person — what you say becomes tasks and real time on your day.
+          The one thing to do right now sits in front of you. The decisions
+          only you can make wait quietly in your Inbox. The rest stays out of
+          your face — so you finally follow through.
         </p>
         <form class="hero-form glass-deep" id="waitlistForm">
           <input type="email" id="waitlistEmail" placeholder="Enter your email…" aria-label="Email address" required>
@@ -475,15 +500,15 @@
           <button type="submit" class="btn-white">Join the Waitlist</button>
         </form>
         <div class="pills-mobile">
-          <span class="pill glass-deep">Just talk to it</span>
-          <span class="pill glass-deep">Calendar-first</span>
-          <span class="pill glass-deep">Reminders that land</span>
+          <span class="pill glass-deep">Now — one thing at a time</span>
+          <span class="pill glass-deep">Coach — just say it</span>
+          <span class="pill glass-deep">Inbox — one-tap decisions</span>
         </div>
       </div>
       <div class="pills-desktop">
-        <span class="pill glass-deep">Just talk to it</span>
-        <span class="pill glass-deep">Calendar-first</span>
-        <span class="pill glass-deep">Reminders that land</span>
+        <span class="pill glass-deep">Now — one thing at a time</span>
+        <span class="pill glass-deep">Coach — just say it</span>
+        <span class="pill glass-deep">Inbox — one-tap decisions</span>
       </div>
     </div>
   </div>
@@ -492,6 +517,66 @@
 <section class="section breath">
   <div class="wrap">
     <p>For people who find hard, interesting things <span class="accent">easy</span> — and easy, mundane things <span class="accent">hard</span>.</p>
+  </div>
+</section>
+
+<section id="tabs" class="section">
+  <div class="wrap">
+    <div class="features-head">
+      <span class="kicker">The whole app, in plain sight</span>
+      <h2>Three tabs. One thing that needs you.</h2>
+      <p>No dashboards to configure, no boards to maintain. Blink is three tabs, and each one has one job.</p>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <span class="tab-name">Now</span>
+        <h3>The one thing to do, zero choices</h3>
+        <p>The moment view shows exactly one thing — no list to scan, nothing to pick. Behind it sits your whole day on an hour grid, with ghost-block suggestions for tasks that don't have a time yet, plus month and year views when you want the long view.</p>
+      </article>
+      <article class="card">
+        <span class="tab-name">✦ Coach</span>
+        <h3>Capture is a conversation</h3>
+        <p>Type or dictate anything. "Gym every Mon, Wed, Fri" becomes a repeating task; a rambling thought becomes tasks and scheduled blocks. If you let it remember, it remembers — memory is explicit opt-in, and if you decline, it says so honestly and works without it.</p>
+      </article>
+      <article class="card">
+        <span class="tab-name">Inbox</span>
+        <h3>The decisions that need you</h3>
+        <p>Everything that genuinely needs a call from you waits here, and each one is a one-tap answer. A quiet badge count tells you when something's waiting — never red, never guilt.</p>
+      </article>
+    </div>
+
+    <div class="screens">
+      <figure>
+        <!-- REPLACE: now-view — screenshot of the Now tab moment view (one thing to do) -->
+        <img src="assets/screens/now-view.png" alt="Blink's Now view showing a single task to do right now" loading="lazy">
+        <figcaption>Now — one thing at a time</figcaption>
+      </figure>
+      <figure>
+        <!-- REPLACE: today-grid — screenshot of the Today hour grid with ghost-block suggestions -->
+        <img src="assets/screens/today-grid.png" alt="Blink's Today view, a full-day hour grid with suggested time blocks" loading="lazy">
+        <figcaption>Today — your day on an hour grid</figcaption>
+      </figure>
+      <figure>
+        <!-- REPLACE: coach-capture — screenshot of the Coach tab capturing a spoken/typed task -->
+        <img src="assets/screens/coach-capture.png" alt="Blink's Coach turning a typed sentence into tasks and scheduled time" loading="lazy">
+        <figcaption>Coach — say it, it's captured</figcaption>
+      </figure>
+      <figure>
+        <!-- REPLACE: inbox — screenshot of the Inbox tab with one-tap decisions -->
+        <img src="assets/screens/inbox.png" alt="Blink's Inbox listing decisions with one-tap answers" loading="lazy">
+        <figcaption>Inbox — one-tap decisions</figcaption>
+      </figure>
+      <figure>
+        <!-- REPLACE: month — screenshot of the two-up endless-scroll Month view -->
+        <img src="assets/screens/month.png" alt="Blink's Month view, two months side by side" loading="lazy">
+        <figcaption>Month — the longer view</figcaption>
+      </figure>
+      <figure>
+        <!-- REPLACE: rewards — screenshot of the rewards / progress screen (non-resetting progress) -->
+        <img src="assets/screens/rewards.png" alt="Blink's progress screen showing rewards that never reset to zero" loading="lazy">
+        <figcaption>Progress — it never resets to zero</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
@@ -510,7 +595,7 @@
           </svg>
         </div>
         <h3>Just talk to it</h3>
-        <p>No forms, no dropdowns, no setup screens. Say what's on your mind and Blink turns it into a task, a plan, or a note — conversation first, structure second.</p>
+        <p>No forms, no dropdowns, no setup screens. Type or dictate what's on your mind and the Coach turns it into tasks, repeating tasks, and time on your day — conversation first, structure second.</p>
       </article>
       <article class="card">
         <div class="card-icon">
@@ -519,7 +604,7 @@
           </svg>
         </div>
         <h3>Calendar is where things actually happen</h3>
-        <p>A task without a time is an intention. A task with a time is a plan. Blink schedules real execution blocks on your calendar, not just another line in a list.</p>
+        <p>A task without a time is an intention. A task with a time is a plan. Blink schedules real blocks on your day — and sketches ghost-block suggestions for unscheduled tasks, so you accept a plan instead of building one.</p>
       </article>
       <article class="card">
         <div class="card-icon">
@@ -536,8 +621,8 @@
             <path d="M12 20c-4-3-7-5.8-7-9a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 21 11c0 3.2-3 6-7 9Z" stroke-linejoin="round"/>
           </svg>
         </div>
-        <h3>Streaks that forgive</h3>
-        <p>Miss a day and the first one's free. After that, rest days you've already earned cover the gap. Only once those run out does a streak shrink — gradually, so one bad day never wipes out what you built.</p>
+        <h3>Progress that never resets to zero</h3>
+        <p>No streak guilt. Your progress doesn't reset because life happened — what you've built stays built. There isn't a red badge anywhere in the app; the accents are honey and amber, because nothing here is designed to make you feel behind.</p>
       </article>
       <article class="card">
         <div class="card-icon">
