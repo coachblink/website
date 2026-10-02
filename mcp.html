@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Connect Your AI to Blink (MCP) — Blink</title>
+<meta name="description" content="Blink speaks the Model Context Protocol. Connect Claude — or any MCP-supporting AI — to your Blink account: it proposes tasks, reads your day, and files decisions to your Inbox. Nothing lands without your one-tap yes.">
+<meta property="og:title" content="Connect Your AI to Blink (MCP)">
+<meta property="og:type" content="article">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/png" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Page-local: code styling only — everything else comes from styles.css. */
+  .article-inner code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    background: var(--mist);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.1em 0.4em;
+    color: var(--ink);
+    overflow-wrap: anywhere;
+  }
+  .article-inner pre {
+    background: var(--mist);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin: 16px 0 24px;
+    overflow-x: auto;
+  }
+  .article-inner pre code {
+    background: none; border: none; padding: 0;
+    font-size: 14px; overflow-wrap: normal;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which AI assistants can connect to Blink?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Any AI client that supports remote MCP (Model Context Protocol) servers can connect — Claude on claude.ai via a custom connector, Claude Code, Claude Desktop, and other MCP-supporting clients. The server is remote (https://api.coachblink.com/mcp), so there is nothing to install or run yourself; you sign in with your Blink account and approve the connection."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a connected AI add tasks to my list or fill my calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not directly. A connected AI proposes tasks; each proposal waits for you to accept or decline it. That boundary is enforced on Blink's servers, not just hidden in an interface — an agent connection's attempt to accept its own proposal is rejected. The AI also cannot complete, delete, or reschedule anything on your account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What can a connected AI see?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An agent-scoped connection can read your tasks, calendar events, reminders, free slots, and remaining capacity — that is what lets it propose things that actually fit your day. Only connect an AI you trust to see your schedule. You can revoke a connection's access at any time from inside the Blink app, and revocation takes effect immediately."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to be technical to connect an AI to Blink?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. On claude.ai you add a custom connector, paste one URL (https://api.coachblink.com/mcp), sign in with your Blink account, and approve. There are no API keys to copy for that path — the sign-in flow handles it."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Blink home">
+      <img src="assets/blink-mark.svg" alt="" class="brand-mark" width="28" height="25">
+      <span class="brand-word">Blink</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <a href="index.html#features">Features</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="blog/index.html">Blog</a>
+    </nav>
+    <a href="index.html#top" class="btn-pill">Get Early Access</a>
+  </div>
+</header>
+
+<main>
+
+  <section class="page-header">
+    <div class="wrap">
+      <p class="page-meta">Published 2026-08-13 &middot; setup guide</p>
+      <h1>Connect your AI to Blink</h1>
+      <p class="lede">Blink speaks MCP. Claude — or any AI that supports the Model Context Protocol — can hand follow-through to Blink: it proposes tasks, reads your day, and files the decisions only you can make into your Inbox. Nothing lands without your one-tap yes.</p>
+    </div>
+  </section>
+
+  <section class="article">
+    <div class="wrap article-inner">
+
+      <p>AI assistants are good at finishing a piece of thinking — a plan, a piece of research, a broken-down project. They are bad at what comes after: making sure a human actually does the parts only a human can do. Blink is built for exactly that gap. Connect your AI to your Blink account and it can put its output where follow-through actually happens — as proposed tasks and one-tap decisions — instead of leaving it buried in a chat scroll you'll never reopen.</p>
+
+      <h2>What connecting does</h2>
+
+      <ul>
+        <li><strong>Hands off follow-through.</strong> When your AI ends a session with "you should book the appointment and email the landlord," it can propose those as concrete tasks in Blink — with a suggested time that fits your real calendar. Each proposal waits for your accept or decline; nothing appears on your list until you say yes.</li>
+        <li><strong>Plans around your actual day.</strong> It can read your tasks, calendar, free slots, and remaining capacity, so what it suggests fits the day you're actually having — not an imaginary empty one.</li>
+        <li><strong>Asks you properly.</strong> Instead of burying a question in conversation, it can file a decision to your Inbox, where it waits quietly with one-tap answers until you're ready.</li>
+      </ul>
+
+      <div class="article-callout">
+        <p><strong>The address your AI connects to:</strong> <code>https://api.coachblink.com/mcp</code> — that exact URL. (<code>coachblink.com</code> itself is just this website.) It's a remote MCP server, so there is nothing to install or keep running; you sign in with your Blink account and approve the connection. You'll need a Blink account — ahead of the App Store launch, <a href="index.html#top">the waitlist</a> is the way in.</p>
+      </div>
+
+      <h2>Set up with Claude</h2>
+
+      <h3>Claude on claude.ai and Claude Desktop</h3>
+      <ol>
+        <li>Open <strong>Settings &rarr; Connectors</strong> and choose <strong>Add custom connector</strong> (available on plans that support custom connectors).</li>
+        <li>Name it <strong>Blink</strong> and paste the URL: <code>https://api.coachblink.com/mcp</code></li>
+        <li>Sign in with your Blink account when prompted, review what's being granted, and approve.</li>
+      </ol>
+
+      <h3>Claude Code</h3>
+      <pre><code>claude mcp add --transport http blink https://api.coachblink.com/mcp</code></pre>
+      <p>Then run <code>/mcp</code> inside Claude Code to sign in and authorize. From that point, the Blink tools are available in your sessions.</p>
+
+      <h3>Any other MCP client</h3>
+      <p>Blink's server isn't Claude-specific. Any client that supports remote MCP servers (Streamable HTTP transport) with OAuth sign-in can connect to the same URL — authorization details are discovered automatically from the server. Clients that authenticate with a header instead can send <code>Authorization: Bearer</code> with a personal access token (below).</p>
+
+      <h2>Access levels, honestly</h2>
+
+      <p>Blink has three access scopes, and their names are exactly these: <strong>agent</strong>, <strong>full</strong>, and <strong>supervisor</strong>.</p>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col">Scope</th>
+              <th scope="col">What it allows</th>
+              <th scope="col">How it's granted</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>agent</strong></td>
+              <td>Read tasks, calendar, reminders, free slots, and capacity. Propose tasks, check its proposals, file and withdraw decisions. Cannot create, complete, delete, or schedule anything directly.</td>
+              <td>What every AI that connects through the sign-in flow gets. This is the only scope offered to connected AIs — you can't accidentally grant more.</td>
+            </tr>
+            <tr>
+              <td><strong>full</strong></td>
+              <td>Everything your own account can do — create, schedule, complete, and delete tasks, events, and reminders directly.</td>
+              <td>Only via a personal access token you deliberately create yourself in the app (Settings &rarr; Agent Access). Never available through the connect flow.</td>
+            </tr>
+            <tr>
+              <td><strong>supervisor</strong></td>
+              <td>A separate, narrow surface for accountability tooling. Deliberately disjoint from agent access — no credential holds both.</td>
+              <td>Only via a personal access token you create yourself.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>Personal access tokens are managed in the Blink app under <strong>Settings &rarr; Agent Access</strong>: name the token, pick its scope, and the token is shown exactly once — Blink stores only a hash of it. Revoke one there and whatever was using it loses access immediately. Tokens can never create other tokens: an agent-scoped credential that leaks cannot mint itself more power.</p>
+
+      <h2>What a connected AI cannot do</h2>
+
+      <p>This is the part worth being precise about, because "connect an AI to your task list" should raise the right questions.</p>
+
+      <ul>
+        <li><strong>It can't put anything on your list or calendar.</strong> Agent connections propose; you accept or decline. That's enforced on Blink's servers — an agent credential's attempt to accept its own proposal is rejected — not just hidden in the interface.</li>
+        <li><strong>It can't complete, delete, or reschedule anything.</strong> Your record of what you actually did stays yours.</li>
+        <li><strong>It can't escalate its own access.</strong> Agent connections can't mint tokens, can't reach full scope, and can't touch the supervisor surface.</li>
+        <li><strong>It can't act invisibly.</strong> Items an agent files are labeled as agent-created in the app, so you always know what came from your AI and what came from you.</li>
+        <li><strong>It can read your schedule.</strong> That's the honest trade: agent scope sees your tasks, events, and reminders so its proposals fit your day. Connect only an AI you trust to see that — and revoke it in the app the moment you change your mind.</li>
+      </ul>
+
+      <h2>The tools your AI gets</h2>
+
+      <p>For the technically curious (and for AI assistants reading this page): an agent-scoped connection gets exactly these tools.</p>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th scope="col">Tool</th>
+              <th scope="col">What it does</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>blink_propose_task</code></td><td>Propose a task for the user's triage — it waits for their accept or decline.</td></tr>
+            <tr><td><code>blink_proposal_status</code></td><td>Check whether a proposal was accepted, declined, or is still waiting.</td></tr>
+            <tr><td><code>blink_ask_decision</code></td><td>File a question to the user's Inbox with one-tap answer options.</td></tr>
+            <tr><td><code>blink_decision_status</code></td><td>Check whether a decision has been answered.</td></tr>
+            <tr><td><code>blink_withdraw_decision</code></td><td>Withdraw a question that's no longer relevant.</td></tr>
+            <tr><td><code>blink_list_tasks</code></td><td>Read tasks, filterable by status and category.</td></tr>
+            <tr><td><code>blink_list_task_steps</code></td><td>Read a task's checklist steps.</td></tr>
+            <tr><td><code>blink_list_events</code></td><td>Read calendar events in a time range.</td></tr>
+            <tr><td><code>blink_find_available_slots</code></td><td>Find free slots of a given length — so proposals fit the real day.</td></tr>
+            <tr><td><code>blink_list_reminders</code></td><td>Read reminders.</td></tr>
+            <tr><td><code>blink_get_capacity</code></td><td>Check how much the user has on their plate before proposing more.</td></tr>
+            <tr><td><code>blink_list_agent_tasks</code></td><td>List the tasks this agent itself proposed.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>A full-scoped personal access token additionally unlocks the direct tools — creating, scheduling, completing, and deleting tasks, calendar events, and reminders — for automations you run yourself and deliberately trust with your account.</p>
+
+      <h2>Frequently asked</h2>
+
+      <div class="faq-item">
+        <h3>Which AI assistants can connect to Blink?</h3>
+        <p>Any AI client that supports remote MCP (Model Context Protocol) servers — Claude on claude.ai via a custom connector, Claude Code, Claude Desktop, and other MCP-supporting clients. The server is remote, so there's nothing to install or run yourself; you sign in with your Blink account and approve the connection.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Can a connected AI add tasks to my list or fill my calendar?</h3>
+        <p>Not directly. A connected AI proposes tasks; each proposal waits for you to accept or decline it. That boundary is enforced on Blink's servers, not just hidden in an interface — an agent connection's attempt to accept its own proposal is rejected. It also can't complete, delete, or reschedule anything on your account.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>What can a connected AI see?</h3>
+        <p>An agent-scoped connection can read your tasks, calendar events, reminders, free slots, and remaining capacity — that's what lets it propose things that actually fit your day. Only connect an AI you trust to see your schedule, and revoke its access from inside the app the moment you change your mind. Revocation is immediate.</p>
+      </div>
+
+      <div class="faq-item">
+        <h3>Do I need to be technical to connect an AI to Blink?</h3>
+        <p>No. On claude.ai you add a custom connector, paste one URL, sign in with your Blink account, and approve. There are no API keys to copy for that path — the sign-in flow handles it.</p>
+      </div>
+
+      <h2>Why this exists</h2>
+      <p>Blink's whole job is managing what needs <em>you</em> — and increasingly, some of what lands on your plate comes from an AI you asked for help. A to-do your assistant typed into a chat window is an intention that evaporates. A proposal in Blink becomes a task, gets a time on your calendar, gets checked in on, and gets counted when you follow through. Your AI does the thinking; Blink makes sure the human part actually happens. <a href="index.html#top">The waitlist</a> is open for early access.</p>
+
+      <p class="page-meta" style="margin-top:2em;">Connection details on this page were checked against Blink's live service on 2026-08-13.</p>
+
+      <a class="back-link" href="index.html">&larr; Back to Blink</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <img src="assets/blink-mark-mono.svg" alt="" class="footer-mark" width="24" height="22">
+    <p class="disclaimer">
+      Blink is not a medical device, therapist, or substitute for professional care.
+      It is a planning, coaching, and organization assistant.
+    </p>
+    <p class="copyright">&copy; 2026 Blink. Made for people who find hard things easy and easy things hard.</p>
+    <p class="copyright"><a href="terms.html">Terms of Service</a> &middot; <a href="consumer-data-policy.html">Consumer health data privacy policy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
