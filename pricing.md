@@ -2,6 +2,8 @@
 
 Plain-language pricing facts, kept current. Last updated: 2026-08-08.
 
+Get Blink on the [App Store](https://apps.apple.com/app/idAPPSTORE_ID_TBD).
+
 ## Plans
 
 | Plan | Price | Notes |

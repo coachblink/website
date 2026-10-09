@@ -31,6 +31,7 @@ care.
 
 ## Learn more
 
+- [App Store](https://apps.apple.com/app/idAPPSTORE_ID_TBD): download Blink for iPhone
 - [Home](https://coachblink.com/): product overview and App Store link
 - [Blog](https://coachblink.com/blog/): essays on focus, follow-through,
   and why easy things feel impossible
